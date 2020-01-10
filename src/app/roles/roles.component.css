@@ -1,7 +1,9 @@
 table {
+    margin: auto;
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    padding: 10%;
   }
   
   td, th {
@@ -13,3 +15,18 @@ table {
   tr:nth-child(even) {
     background-color: #dddddd;
   }
+
+ .roles{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+
+ }
+
+ .contenedor{
+     margin: auto;
+     width: 80%;
+     padding: 10px;
+  
+     border-radius: 5px 5px 5px 5px;
+ }

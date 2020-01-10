@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RolService } from 'src/app/service/rol.service';
 
 @Component({
   selector: 'app-agregar-rol',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgregarRolComponent implements OnInit {
 
-  constructor() { }
+  public rolSeleccionado: any;
+  public permisosDisponibles: any[];
+
+  constructor(private rolService: RolService) { }
 
   ngOnInit() {
+    this.rolSeleccionado = this.rolService.rolSeleccionado;
+    this.rolService.getPermisos().subscribe(data => {
+      this.permisosDisponibles = (<any[]>data).filter(permiso => !this.rolSeleccionado.permisos.includes(permiso));
+    });
   }
 
 }

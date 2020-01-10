@@ -1,5 +1,6 @@
-
-<div id = tabla>
+<div class="contenedor">
+<div class = "roles">
+    <h3>Roles</h3>
 <table>
     <tr>
       <th>Nombre Rol</th>
@@ -9,10 +10,11 @@
       <td>{{rol.nombre}}</td>
       <td>
         <div>
-            <a routerLink="editar">Editar</a>
+            <a (click)="editarRol(rol)">Editar</a>
             <a>Eliminar</a>
         </div>
       </td>
     </tr>
   </table>
+</div>
 </div>

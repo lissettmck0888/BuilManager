@@ -6,6 +6,7 @@ import { UsuariosComponent } from '../usuarios/usuarios.component';
 import { RolesComponent } from '../roles/roles.component';
 import { AgregarUsuarioComponent } from '../usuarios/agregar-usuario/agregar-usuario.component';
 import { AgregarRolComponent } from '../roles/agregar-rol/agregar-rol.component';
+import { AngularDualListBoxModule } from 'angular-dual-listbox';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AgregarRolComponent } from '../roles/agregar-rol/agregar-rol.component'
   ],
   imports: [
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    AngularDualListBoxModule
   ]
 })
 export class MainModule { }
