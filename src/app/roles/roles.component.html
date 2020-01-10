@@ -1,0 +1,18 @@
+
+<div id = tabla>
+<table>
+    <tr>
+      <th>Nombre Rol</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let rol of roles">
+      <td>{{rol.nombre}}</td>
+      <td>
+        <div>
+            <a routerLink="editar">Editar</a>
+            <a>Eliminar</a>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
