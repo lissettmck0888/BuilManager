@@ -32,11 +32,11 @@ const routes = [
             {
                 path: 'usuarios/editar',
                 component: AgregarUsuarioComponent
-            },/*
+            },
             {
                 path: 'registro-departamento',
                 component: RegistroDepartamentoComponent
-            }*/
+            }
         ]
     }/* ,
     {

@@ -2,7 +2,7 @@
 <header>
     <h2>GEDEF</h2>
 </header>
-<div *ngIf="user" class="pull right">
+<div *ngIf="user" class="pull right" style="right: 0;">
     {{user.nombreUsuario}} {{user.rol}}
     <a href="#" (click)="cerrarSesion($event)">Cerrar sesion</a>
 </div>
@@ -10,7 +10,7 @@
     <li class="list"><a class="active" href="#home">Home</a></li>
     <li [privilegio]="'P07'" class="list"><a routerLink="usuarios">Usuarios</a></li>
     <li [privilegio]="'P08'" class="list"><a routerLink="roles">Perfiles</a></li>
-    <li class="list"><a routerLink="registro-departamentos">Registro Departamentos</a></li>
+    <li class="list"><a routerLink="registro-departamento">Registro Departamentos</a></li>
     <li [privilegio]="'P09'" class="list"><a href="#">Gastos comunes</a></li>
     <li [privilegio]="'P10'" class="list"><a href="#">Zonas Comunes</a></li>
     <li [privilegio]="'P11'" class="list"><a href="#">Mantención y reparaciones</a></li>
@@ -18,6 +18,3 @@
 </ul>
 
 <router-outlet></router-outlet>
-<article>
-
-</article>
