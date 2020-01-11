@@ -36,7 +36,7 @@
     padding: 20px;
     width: 70%;
     background-color: white;
-    height: 300px; /* only for demonstration, should be removed */
+    height: 500px; /* only for demonstration, should be removed */
   }
   
   /* Clear floats after the columns */
@@ -100,6 +100,3 @@
   background: rgb(244, 248, 250);
 }
 
-.test{
-  
-}

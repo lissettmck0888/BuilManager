@@ -12,13 +12,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GlobalService } from './service/global.service';
 import { PermitidoDirective } from './directive/permitido.directive';
 import { RegistroDepartamentoComponent } from './registro-departamento/registro-departamento.component';
+import { GastosComunesComponent } from './gastos-comunes/gastos-comunes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent/* ,
     PermitidoDirective */,
-    RegistroDepartamentoComponent
+    RegistroDepartamentoComponent,
+    GastosComunesComponent
   ],
   imports: [
     CommonModule,
