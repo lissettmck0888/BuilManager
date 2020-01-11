@@ -2,7 +2,7 @@
   <nav>
     <ul>
       <li><a routerLink="agregar">Agregar Usuario</a>
-      <li><a routerLink=""></a>
+   
       <li><a href="#"></a></li>
     </ul>
   </nav>
@@ -14,11 +14,19 @@
       <tr>
         <th>Nombre Usuario</th>
         <th>Rol</th>
+        <th></th>
       </tr>
       <tr *ngFor="let usuario of usuarios">
         <td>{{usuario.nombreUsuario}}</td>
 
         <td>{{usuario.rol.nombre}}</td>
+      
+      <td>
+        <div>
+          <a (click)="editarRol(rol)">Editar</a>
+          <a> Eliminar</a>
+      </div>
+      </td>
       </tr>
     </table>
 
