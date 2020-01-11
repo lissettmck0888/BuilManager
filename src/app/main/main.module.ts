@@ -8,6 +8,7 @@ import { AgregarUsuarioComponent } from '../usuarios/agregar-usuario/agregar-usu
 import { AgregarRolComponent } from '../roles/agregar-rol/agregar-rol.component';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PermitidoDirective } from '../directive/permitido.directive';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     UsuariosComponent,
     RolesComponent,
     AgregarUsuarioComponent,
-    AgregarRolComponent
+    AgregarRolComponent,
+    PermitidoDirective
   ],
   imports: [
     CommonModule,

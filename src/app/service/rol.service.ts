@@ -18,7 +18,11 @@ export class RolService {
   public getPermisos(): Observable<any>{
     return this.httpservice.get('http://localhost:8080/permisos/');
   }
-  
+
+  public getPermisosRol(rol:string): Observable<any>{
+    return this.httpservice.get('http://localhost:8080/permisos/rol/' + rol);
+  }
+
   public guardarRol(rol:any): Observable<any> {
     return this.httpservice.post('http://localhost:8080/roles/', rol);
   }

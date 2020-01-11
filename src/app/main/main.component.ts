@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../service/login.service';
+import { UserModel } from '../model/user.model';
+import { GlobalService } from '../service/global.service';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  public user: UserModel;
+
+  constructor(
+    private globalService: GlobalService
+    ) { }
 
   ngOnInit() {
+    this.user = this.globalService.currentUser;
   }
 
 }

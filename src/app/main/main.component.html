@@ -1,32 +1,22 @@
-<!-- <div>
-    <a routerLink="usuarios">Comunidad</a>
-</div>
-<div>
-    <a routerLink="roles">Condominio</a>
-</div>
-<div>
-    <a routerLink="usuarios">Gastos Comunes</a>
-</div>
-<div>
-    <a routerLink="roles">Pagos</a>
-</div> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <header>
     <h2>GEDEF</h2>
-  </header>
-  <ul class="list2">
-    
-    <li class="list"><a routerLink="usuarios">Usuarios</a></li>
-    <li class="list"><a routerLink="roles">Perfiles</a></li>
+</header>
+<div class="pull right">
+    {{user.nombreUsuario}} {{user.rol}}
+</div>
+<ul class="list2">
+    <li class="list"><a class="active" href="#home">Home</a></li>
+    <li [privilegio]="'P07'" class="list"><a routerLink="usuarios">Usuarios</a></li>
+    <li [privilegio]="'P08'" class="list"><a routerLink="roles">Perfiles</a></li>
     <li class="list"><a routerLink="registro-departamentos">Registro Departamentos</a></li>
-    <li class="list"><a href="#">Gastos comunes</a></li>
-    <li class="list"><a href="#">Zonas Comunes</a></li>
-    <li class="list"><a href="#">Mantención y reparaciones</a></li>
-    <li class="list"><a href="#">Gestion comunitaria</a></li>
-  </ul>
-  
-      <router-outlet></router-outlet>  
+    <li [privilegio]="'P09'" class="list"><a href="#">Gastos comunes</a></li>
+    <li [privilegio]="'P10'" class="list"><a href="#">Zonas Comunes</a></li>
+    <li [privilegio]="'P11'" class="list"><a href="#">Mantención y reparaciones</a></li>
+    <li [privilegio]="'P12'" class="list"><a href="#">Gestion comunitaria</a></li>
+</ul>
+
+<router-outlet></router-outlet>
 <article>
-    
+
 </article>
-  
