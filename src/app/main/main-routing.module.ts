@@ -6,6 +6,7 @@ import { RolesComponent } from '../roles/roles.component';
 import { MainComponent } from './main.component';
 import { AgregarRolComponent } from '../roles/agregar-rol/agregar-rol.component';
 import { AgregarUsuarioComponent } from '../usuarios/agregar-usuario/agregar-usuario.component';
+import { RegistroDepartamentoComponent } from '../registro-departamento/registro-departamento.component';
 
 const routes = [
     {
@@ -31,7 +32,11 @@ const routes = [
             {
                 path: 'usuarios/editar',
                 component: AgregarUsuarioComponent
-            }
+            },/*
+            {
+                path: 'registro-departamento',
+                component: RegistroDepartamentoComponent
+            }*/
         ]
     }/* ,
     {

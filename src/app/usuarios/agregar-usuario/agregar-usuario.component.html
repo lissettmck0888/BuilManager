@@ -1,7 +1,9 @@
 <div class="container">
     <div class="elementos">
         <h3>Agregar Usuarios</h3>
-
+        <a routerLink="/main/usuarios">Volver</a>
+        <br>
+        <br>
         <form [formGroup]="formUsuarios">
             <p>Nombre: <input type="text" formControlName="nombreUsuario" name="nombre" required></p>
             <p>Contraseña: <input type="text" formControlName="contrasena" name="constrasena" required></p>
