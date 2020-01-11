@@ -100,9 +100,3 @@
   background: rgb(244, 248, 250);
 }
 
-@media (max-width: 600px) {
-  nav, article {
-    width: 100%;
-    height: auto;
-  }
-}
