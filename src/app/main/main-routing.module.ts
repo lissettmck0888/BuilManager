@@ -5,6 +5,7 @@ import { UsuariosComponent } from '../usuarios/usuarios.component';
 import { RolesComponent } from '../roles/roles.component';
 import { MainComponent } from './main.component';
 import { AgregarRolComponent } from '../roles/agregar-rol/agregar-rol.component';
+import { AgregarUsuarioComponent } from '../usuarios/agregar-usuario/agregar-usuario.component';
 
 const routes = [
     {
@@ -22,7 +23,12 @@ const routes = [
             {
                 path: 'roles/editar',
                 component: AgregarRolComponent
+            },
+            {
+                path: 'usuarios/agregar',
+                component: AgregarUsuarioComponent
             }
+
         ]
     }/* ,
     {

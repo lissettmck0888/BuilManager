@@ -10,11 +10,22 @@
 <div>
     <a routerLink="roles">Pagos</a>
 </div> -->
-<div>
-    <a routerLink="usuarios">Usuarios</a>
-</div>
-<div>
-    <a routerLink="roles">Roles</a>
-</div>
-
-<router-outlet></router-outlet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<header>
+    <h2>BuildManager</h2>
+  </header>
+  <ul class="list2">
+    <li class="list"><a class="active" href="#home">Home</a></li >
+    <li class="list"><a routerLink="usuarios">Usuarios</a></li>
+    <li class="list"><a routerLink="roles">Roles</a></li>
+    <li class="list"><a href="#">Gastos comunes</a></li>
+    <li class="list"><a href="#">Configuración</a></li>
+  </ul>
+  
+      <router-outlet></router-outlet>  
+<article>
+    
+</article>
+  <footer>
+    <p>Desarrollo.com</p>
+  </footer>

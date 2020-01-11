@@ -1,1 +1,13 @@
-<p>agregar-usuario works!</p>
+
+<div class="container">
+<div class="elementos">
+    <h3>Agregar Usuarios</h3>
+
+    <p>Nombre: <input type="text" name="nombre" required></p>
+    <p>Contraseña: <input type="text" name="constrasena" required></p>
+    <select>
+        <option id="">Seleccione</option>
+        <option *ngFor="let rol of roles" [attr.id]="rol.idRol">{{rol.nombre}}</option>
+    </select>
+</div>
+</div>

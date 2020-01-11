@@ -11,11 +11,13 @@ export class RolService {
 
   constructor(private httpservice : HttpClient) { }
 
-  public getRol(): Observable<any>{
+  public getRoles(): Observable<any>{
     return this.httpservice.get('http://localhost:8080/roles/');
   }
 
   public getPermisos(): Observable<any>{
     return this.httpservice.get('http://localhost:8080/permisos/');
   }
+
+  
 }

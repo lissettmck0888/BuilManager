@@ -13,3 +13,11 @@ table {
   tr:nth-child(even) {
     background-color: #dddddd;
   }
+
+ .usuarios {
+    float: left;
+    padding: 20px;
+    width: 70%;
+    background-color: white;
+    height: 300px; /* only for demonstration, should be removed */
+  }
