@@ -8,9 +8,9 @@
   }
   
   /* Style the header */
-  header {
+  .header {
     background-color: rgb(125, 149, 161);
-    padding: 30px;
+    padding: 15px;
     text-align: center;
     font-size: 35px;
     color: white;

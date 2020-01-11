@@ -9,11 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { AppInterceptor } from './app-interceptor';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { GlobalService } from './service/global.service';
+import { PermitidoDirective } from './directive/permitido.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent/* ,
+    PermitidoDirective */
   ],
   imports: [
     CommonModule,
@@ -28,7 +31,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AppInterceptor,
-      multi: true
+      multi: true,
+      deps: [GlobalService]
     }
   ],
   bootstrap: [AppComponent]

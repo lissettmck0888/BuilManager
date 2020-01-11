@@ -19,5 +19,9 @@ export class RolService {
     return this.httpservice.get('http://localhost:8080/permisos/');
   }
 
+  public getPermisosRol(rol:string): Observable<any>{
+    return this.httpservice.get('http://localhost:8080/permisos/rol/' + rol);
+  }
+
   
 }
