@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { UserModel } from '../model/user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { GlobalService } from './global.service';
@@ -29,7 +29,8 @@ export class LoginService {
                 console.log('decoded');
                 console.log(this.globalService.currentUser);
                 return true;
-            })
+            }),
+            catchError(error=> of(false))
         );
     }
 

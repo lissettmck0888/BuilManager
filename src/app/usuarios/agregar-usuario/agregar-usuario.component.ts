@@ -4,6 +4,7 @@ import { RolesComponent } from 'src/app/roles/roles.component';
 import { RolService } from 'src/app/service/rol.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { UsuarioModel } from 'src/app/model/usuario.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-usuario',
@@ -18,6 +19,7 @@ export class AgregarUsuarioComponent implements OnInit {
   private usuario: UsuarioModel = new UsuarioModel();
 
   constructor(
+    private router: Router,
     private usuarioService: UsuarioService,
     private rolesService: RolService,
     private fb: FormBuilder) { }
@@ -48,7 +50,10 @@ export class AgregarUsuarioComponent implements OnInit {
   public guardarUsuario() {
     console.log('this.usuario');
     console.log(this.usuario);
-    this.usuarioService.crearUsuario(this.usuario).subscribe(response => console.log(response));
+    this.usuarioService.crearUsuario(this.usuario).subscribe(response => {
+      console.log(response);
+      this.router.navigate(['/main/usuarios']);
+    });
   }
 
 }

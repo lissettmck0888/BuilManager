@@ -16,8 +16,6 @@ import { GastosComunesComponent } from './gastos-comunes/gastos-comunes.componen
 @NgModule({
   declarations: [
     AppComponent,
-    RegistroDepartamentoComponent,
-    GastosComunesComponent,
     LoginComponent
   ],
   imports: [

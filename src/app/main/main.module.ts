@@ -10,6 +10,7 @@ import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PermitidoDirective } from '../directive/permitido.directive';
 import { RegistroDepartamentoComponent } from '../registro-departamento/registro-departamento.component';
+import { GastosComunesComponent } from '../gastos-comunes/gastos-comunes.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { RegistroDepartamentoComponent } from '../registro-departamento/registro
     AgregarUsuarioComponent,
     AgregarRolComponent,
     RegistroDepartamentoComponent,
-    PermitidoDirective
+    PermitidoDirective,
+    GastosComunesComponent
   ],
   imports: [
     CommonModule,

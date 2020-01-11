@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RolService } from 'src/app/service/rol.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-rol',
@@ -11,7 +12,10 @@ export class AgregarRolComponent implements OnInit {
   public rolSeleccionado: any;
   public permisosDisponibles: any[];
 
-  constructor(private rolService: RolService) { }
+  constructor(
+    private rolService: RolService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.rolSeleccionado = this.rolService.rolSeleccionado;
@@ -23,6 +27,9 @@ export class AgregarRolComponent implements OnInit {
   public guardarRol() {
     console.log('this.usuario');
     console.log(this.rolSeleccionado);
-    this.rolService.guardarRol(this.rolSeleccionado).subscribe(response => console.log(response));
+    this.rolService.guardarRol(this.rolSeleccionado).subscribe(response => {
+      console.log(response);
+      this.router.navigate(['/main/roles']);
+    });
   }
 }

@@ -13,6 +13,7 @@ import { GlobalService } from '../service/global.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  loginError: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,6 +38,9 @@ export class LoginComponent implements OnInit {
           this.global.permisos = permisos;
           this.router.navigate(['main']);
         });
+      }else {
+        console.log('fallo');
+        this.loginError = true;
       }
     })
   }
