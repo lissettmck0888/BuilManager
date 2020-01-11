@@ -7,6 +7,7 @@ import { RolesComponent } from '../roles/roles.component';
 import { AgregarUsuarioComponent } from '../usuarios/agregar-usuario/agregar-usuario.component';
 import { AgregarRolComponent } from '../roles/agregar-rol/agregar-rol.component';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AngularDualListBoxModule } from 'angular-dual-listbox';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MainRoutingModule,
     AngularDualListBoxModule
   ]

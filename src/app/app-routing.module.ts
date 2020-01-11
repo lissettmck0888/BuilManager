@@ -18,7 +18,7 @@ const routes = [
   },
   {
     path: '',
-    redirectTo: '',
+    redirectTo: 'main',
     pathMatch: 'full'
   }
 ];

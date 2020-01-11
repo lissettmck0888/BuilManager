@@ -3,7 +3,7 @@
 <div class="elementos">
     <a routerLink="/main/roles">Volver</a>
     <br><br>
-    <form action="/action_page.php">
+    <!-- <form>
         Nombre:<br>
         <input type="text" name="firstname">
         <br>
@@ -11,7 +11,7 @@
         <input type="text" name="lastname">
         <br><br>
         
-        </form>
+        </form> -->
 </div>
 <div class="listaAgregar">
     <dual-list [source]="permisosDisponibles" key="codigo" display="nombre" [(destination)]="rolSeleccionado.permisos"></dual-list>

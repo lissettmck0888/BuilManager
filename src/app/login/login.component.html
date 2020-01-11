@@ -7,16 +7,16 @@
                 </span>
             </div>
 
-            <form class="login100-form validate-form">
+            <form [formGroup]="loginForm" class="login100-form validate-form">
                 <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                     <span class="label-input100">Usuario</span>
-                    <input class="input100" type="text" name="username" placeholder="Ingresar usuario">
+                    <input class="input100" type="text" formControlName="userName" name="username" placeholder="Ingresar usuario">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
                     <span class="label-input100">Contraseña</span>
-                    <input class="input100" type="password" name="pass" placeholder="Ingresar contraseña">
+                    <input class="input100" type="password" formControlName="password" name="pass" placeholder="Ingresar contraseña">
                     <span class="focus-input100"></span>
                 </div>
 
@@ -37,7 +37,7 @@
                 <p>
                 <p>
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
+                    <button class="login100-form-btn" (click)="autenticar()">
                         Entrar
                     </button>
                 </div>
