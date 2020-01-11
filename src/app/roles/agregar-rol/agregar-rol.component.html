@@ -1,20 +1,14 @@
 
 
-<div class="elementos">
-    <a routerLink="/main/roles">Volver</a>
-    <br><br>
-    <!-- <form>
-        Nombre:<br>
-        <input type="text" name="firstname">
-        <br>
-        Decripcion:<br>
-        <input type="text" name="lastname">
-        <br><br>
-        
-        </form> -->
-</div>
+
 <div class="listaAgregar">
+   
+    <br>
+    <br>
+    <h3>Editar perfiles usuario</h3>
+    <br>
+    <a routerLink="/main/roles">Volver</a>
     <dual-list [source]="permisosDisponibles" key="codigo" display="nombre" [(destination)]="rolSeleccionado.permisos"></dual-list>
     <br><br>
-    <input type="submit">
+    <button (click)="guardarRol()">Guardar</button>
 </div>

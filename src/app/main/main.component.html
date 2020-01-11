@@ -1,9 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <header>
-    <div class="header">
-        <h2>GEDEF</h2>
-    </div>
-    
+    <h2>GEDEF</h2>
 </header>
 <div class="pull right">
     {{user.nombreUsuario}} {{user.rol}}
@@ -11,7 +8,8 @@
 <ul class="list2">
     <li class="list"><a class="active" href="#home">Home</a></li>
     <li [privilegio]="'P07'" class="list"><a routerLink="usuarios">Usuarios</a></li>
-    <li [privilegio]="'P08'" class="list"><a routerLink="roles">Roles</a></li>
+    <li [privilegio]="'P08'" class="list"><a routerLink="roles">Perfiles</a></li>
+    <li class="list"><a routerLink="roles">Registro Departamentos</a></li>
     <li [privilegio]="'P09'" class="list"><a href="#">Gastos comunes</a></li>
     <li [privilegio]="'P10'" class="list"><a href="#">Zonas Comunes</a></li>
     <li [privilegio]="'P11'" class="list"><a href="#">Mantención y reparaciones</a></li>

@@ -13,15 +13,16 @@
     <table>
       <tr>
         <th>Nombre Usuario</th>
-        <th>Rol</th>
+        <th>Perfil</th>
         <th></th>
       </tr>
       <tr *ngFor="let usuario of usuarios; let i = index">
         <td>{{usuario.nombreUsuario}}</td>
         <td>
+          <div class="btn">
           <ng-container *ngIf="!editarRol[i]">
             {{usuario.rol.nombre}}
-            <a (click)="cambiarRolModo(i, true)">Cambiar Rol</a>
+            <a href="#" (click)="cambiarRolModo(i, true, $event)">Editar Perfil</a>
           </ng-container>
           <ng-container *ngIf="editarRol[i]">
             <select [(ngModel)]="nuevoRol[i]">
@@ -30,13 +31,15 @@
                 {{rol.nombre}}
               </option>
             </select>
-            <a (click)="guardarUsuario(i)">Guardar</a>
-            <a (click)="cambiarRolModo(i, false)">Cancelar</a>
+            <a href="#" (click)="guardarUsuario(i, $event)">Guardar</a>
+            
+            <a href="#" (click)="cambiarRolModo(i, false, $event)">  Cancelar</a>
           </ng-container>
+        </div>
         </td>
         <td>
           <div *ngIf="!editarRol[i]">
-            <a> Eliminar</a>
+            <a href="#" (click)="eliminarUsuario(i, $event)"> Eliminar</a>
           </div>
         </td>
       </tr>
