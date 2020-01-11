@@ -2,8 +2,9 @@
 <header>
     <h2>GEDEF</h2>
 </header>
-<div class="pull right">
+<div *ngIf="user" class="pull right">
     {{user.nombreUsuario}} {{user.rol}}
+    <a href="#" (click)="cerrarSesion($event)">Cerrar sesion</a>
 </div>
 <ul class="list2">
     <li class="list"><a class="active" href="#home">Home</a></li>

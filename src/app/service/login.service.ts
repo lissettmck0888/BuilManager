@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { UserModel } from '../model/user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { GlobalService } from './global.service';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,10 @@ export class LoginService {
 
     private jwtHelperService: JwtHelperService = new JwtHelperService();
 
-    constructor(private httpservice: HttpClient, private globalService: GlobalService) { }
+    constructor(
+        private httpservice: HttpClient, 
+        private globalService: GlobalService
+        ) { }
 
     public autenticar(credenciales: any): Observable<boolean> {
         return this.httpservice.post('http://localhost:8080/login', credenciales, { responseType: 'text' }).pipe(
@@ -27,6 +31,12 @@ export class LoginService {
                 return true;
             })
         );
+    }
+
+    public logout() {
+        this.globalService.currentUser = null;
+        this.globalService.permisos = null;
+        localStorage.clear();
     }
 
 
