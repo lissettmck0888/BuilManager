@@ -16,13 +16,13 @@ export class PermitidoDirective {
   @Input()
   set privilegio(permiso: string) {
     this.permiso = permiso;
-    const permision: any = this.globalService.permisos.find(perm=>perm.codigo===permiso);
+    let permision: any = null;
+    if(this.globalService.permisos) {
+      permision = this.globalService.permisos.find(perm=>perm.codigo===permiso);
+    }
     if(!permision){
       this.elementRef.nativeElement.style.display = 'none';
     }
   }
 
-  public slfsdf() {
-
-  }
 }

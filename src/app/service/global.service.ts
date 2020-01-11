@@ -20,9 +20,11 @@ export class GlobalService {
     get currentUser(): UserModel {
         if(!this._currentUser) {
             this._currentUser = this.jwtHelperService.decodeToken(localStorage.getItem('token'));
-            this.rolService.getPermisosRol(this.currentUser.rol).subscribe(data=>{
-                this.permisos = data;
-            });
+            if(this._currentUser){
+                this.rolService.getPermisosRol(this._currentUser.rol).subscribe(data=>{
+                    this.permisos = data;
+                });
+            }
         }
         return this._currentUser;
     }
