@@ -1,17 +1,18 @@
 <div class="contenedor">
 <div class = "roles">
-    <h3>Roles</h3>
+    <h3>Perfiles</h3>
 <table>
     <tr>
-      <th>Nombre Rol</th>
+      <th>Nombre Perfil</th>
       <th></th>
     </tr>
     <tr *ngFor="let rol of roles">
       <td>{{rol.nombre}}</td>
       <td>
         <div>
-            <a (click)="editarRol(rol)">Editar</a>
-            <a> Eliminar</a>
+            <a  href="#" (click)="editarRol(rol, $event)">Editar</a>
+
+            
         </div>
       </td>
     </tr>

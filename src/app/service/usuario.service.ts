@@ -9,6 +9,7 @@ import { UsuarioModel } from '../model/usuario.model';
 export class UsuarioService {
 
   public usuarioSeleccionado: UsuarioModel;
+  private idUsuario: any[];
   
   constructor(private httpClient: HttpClient) { }
 
@@ -18,5 +19,9 @@ export class UsuarioService {
 
   public crearUsuario(usuario: UsuarioModel): Observable<any> {
     return this.httpClient.post('http://localhost:8080/usuarios/', usuario);
+  }
+
+  public eliminarUsuario(idUsuario): Observable<any>{
+    return this.httpClient.delete('http://localhost:8080/usuarios/'+idUsuario);
   }
 }

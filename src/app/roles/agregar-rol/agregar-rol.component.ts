@@ -20,4 +20,9 @@ export class AgregarRolComponent implements OnInit {
     });
   }
 
+  public guardarRol() {
+    console.log('this.usuario');
+    console.log(this.rolSeleccionado);
+    this.rolService.guardarRol(this.rolSeleccionado).subscribe(response => console.log(response));
+  }
 }

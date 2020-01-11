@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RolService } from '../service/rol.service';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-roles',
@@ -12,6 +13,7 @@ export class RolesComponent implements OnInit {
 
   public roles: any[];
   public lista: any[] = [];
+  public rol: any[];
 
   constructor(
     private rolService:RolService,
@@ -24,9 +26,12 @@ export class RolesComponent implements OnInit {
     });
   }
 
-  public editarRol(rol : any){
+  public editarRol(rol : any, event){
+    event.preventDefault();
     this.rolService.rolSeleccionado = rol;
     this.router.navigate(['/main/roles/editar']);
   }
+
+
 
 }

@@ -40,7 +40,8 @@ export class UsuariosComponent implements OnInit {
 
   }
 
-  public cambiarRolModo(i: number, flag: boolean) {
+  public cambiarRolModo(i: number, flag: boolean, event) {
+    event.preventDefault();
     this.editarRol[i] = flag;
   }
   
@@ -49,12 +50,20 @@ export class UsuariosComponent implements OnInit {
     return rolUsuario.idRol===rol.idRol;
   }
 
-  public guardarUsuario(index:number) {
+  public guardarUsuario(index:number, event) {
+    event.preventDefault();
     const selectedRol = this.roles.find(rol=>Number(rol.idRol)===Number(this.nuevoRol[index]));
     this.usuarios[index].rol = selectedRol;
     this.usuarioService.crearUsuario(this.usuarios[index]).subscribe(response => console.log(response));
     this.editarRol[index] = false;
   }
 
+  public eliminarUsuario(index:number, event){
+    console.log('fsfds');
+    event.preventDefault();
+    this.usuarioService.eliminarUsuario(this.usuarios[index].idUsuario).subscribe(resp=>{
+      console.log('eliminado');
+    });
+  }
 
 }
