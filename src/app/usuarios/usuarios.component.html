@@ -2,7 +2,7 @@
   <nav>
     <ul>
       <li><a routerLink="agregar">Agregar Usuario</a>
-   
+
       <li><a href="#"></a></li>
     </ul>
   </nav>
@@ -16,17 +16,29 @@
         <th>Rol</th>
         <th></th>
       </tr>
-      <tr *ngFor="let usuario of usuarios">
+      <tr *ngFor="let usuario of usuarios; let i = index">
         <td>{{usuario.nombreUsuario}}</td>
-
-        <td>{{usuario.rol.nombre}}</td>
-      
-      <td>
-        <div>
-          <a (click)="editarRol(rol)">Editar</a>
-          <a> Eliminar</a>
-      </div>
-      </td>
+        <td>
+          <ng-container *ngIf="!editarRol[i]">
+            {{usuario.rol.nombre}}
+            <a (click)="cambiarRolModo(i, true)">Cambiar Rol</a>
+          </ng-container>
+          <ng-container *ngIf="editarRol[i]">
+            <select [(ngModel)]="nuevoRol[i]">
+              <option id="">Seleccione</option>
+              <option *ngFor="let rol of roles" [value]="rol.idRol">
+                {{rol.nombre}}
+              </option>
+            </select>
+            <a (click)="guardarUsuario(i)">Guardar</a>
+            <a (click)="cambiarRolModo(i, false)">Cancelar</a>
+          </ng-container>
+        </td>
+        <td>
+          <div *ngIf="!editarRol[i]">
+            <a> Eliminar</a>
+          </div>
+        </td>
       </tr>
     </table>
 

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
+import { UsuarioModel } from '../model/usuario.model';
+import { Router } from '@angular/router';
+import { RolService } from '../service/rol.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -9,15 +12,49 @@ import { UsuarioService } from '../service/usuario.service';
 export class UsuariosComponent implements OnInit {
 
   public usuarios: any[];
-  
-  constructor(private usuarioService: UsuarioService) { }
+  public roles: any[];
+
+  public editarRol: boolean[] = [];
+  public nuevoRol: number[] = [];
+
+  constructor(
+    private usuarioService: UsuarioService,
+    private rolesService: RolService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
 
-    this.usuarioService.getUsuarios().subscribe(data => {
-      console.log(data);
-      this.usuarios = data;
+    this.rolesService.getRoles().subscribe(data => {
+      this.roles = data;
+
+      this.usuarioService.getUsuarios().subscribe(data => {
+        console.log(data);
+        this.usuarios = data;
+        this.usuarios.forEach(u => {
+          this.editarRol.push(false);
+          this.nuevoRol.push(u.rol.idRol);
+        });
+      });
     });
+
   }
+
+  public cambiarRolModo(i: number, flag: boolean) {
+    this.editarRol[i] = flag;
+  }
+  
+  checkSelected(rolUsuario: any, rol:any): boolean {
+    console.log(rolUsuario.idRol + ' | ' + rol.idRol + '=' + (rolUsuario.idRol===rol.idRol));
+    return rolUsuario.idRol===rol.idRol;
+  }
+
+  public guardarUsuario(index:number) {
+    const selectedRol = this.roles.find(rol=>Number(rol.idRol)===Number(this.nuevoRol[index]));
+    this.usuarios[index].rol = selectedRol;
+    this.usuarioService.crearUsuario(this.usuarios[index]).subscribe(response => console.log(response));
+    this.editarRol[index] = false;
+  }
+
 
 }

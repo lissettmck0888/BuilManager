@@ -27,8 +27,11 @@ const routes = [
             {
                 path: 'usuarios/agregar',
                 component: AgregarUsuarioComponent
+            },
+            {
+                path: 'usuarios/editar',
+                component: AgregarUsuarioComponent
             }
-
         ]
     }/* ,
     {
