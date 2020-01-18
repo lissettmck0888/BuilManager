@@ -1,1 +1,36 @@
-<p>registro-departamento works!</p>
+
+<section>
+    <nav>
+      <ul>
+        <li><a routerLink="agregar">Configurar unidad</a></li>
+        <li><a routerLink="agregar">Editar unidad</a></li>
+           
+        <li><a href="#"></a></li>
+      </ul>
+    </nav>
+  
+  
+    <article>
+      <div class="row">
+        <div class="col-7">
+          <p>Unidades disponibles:</p>
+          <form [formGroup]="formAsignacion">
+            <button (click)="agregarUnidades()">Agregar</button>
+            <select class="seleccionUnidad"  multiple formControlName="unidadesSeleccionadas">
+              <option *ngFor="let unidad of unidadesDisponibles"[ngValue]="unidad" >
+                {{unidad.tipoUnidad.nombre + ', ' + unidad.numero + ' ' + unidad.piso + ' ' + unidad.sector}}
+              </option>
+            </select>
+          </form>
+        </div>
+        <div class="col-5">
+          Resumen
+          <div>
+            <div *ngFor="let unidad of unidadesSeleccionadas">
+              {{unidad.tipoUnidad.nombre + ', ' + unidad.numero + ' ' + unidad.piso + ' ' + unidad.sector}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>

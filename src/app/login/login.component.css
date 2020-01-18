@@ -389,6 +389,8 @@
     display: -ms-flexbox;
     display: flex;
     flex-wrap: wrap;
+    margin-top: 10%;
+    align-self: auto;
   }
   
   .login100-form-btn {

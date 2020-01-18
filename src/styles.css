@@ -19,7 +19,7 @@
   /* Create two columns/boxes that floats next to each other */
   nav {
     float: left;
-    width: 30%;
+    width: 20%;
     height: 300px; /* only for demonstration, should be removed */
     background: rgb(242, 246, 250);
     padding: 20px;
@@ -33,10 +33,11 @@
   
   article {
     float: left;
-    padding: 20px;
+    padding: 50px;
     width: 70%;
     background-color: white;
     height: 500px; /* only for demonstration, should be removed */
+    
   }
   
   /* Clear floats after the columns */
@@ -65,9 +66,13 @@
   .list2{
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 20px;
   overflow: hidden;
   background-color: #333;
+}
+h3{
+  margin: auto;
+  text-align: center;
 }
 
 .list {
@@ -100,3 +105,7 @@
   background: rgb(244, 248, 250);
 }
 
+.seleccionUnidad{
+  width: 350px;
+  height: 300px;
+}
