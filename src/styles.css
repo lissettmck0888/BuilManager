@@ -20,8 +20,8 @@
   nav {
     float: left;
     width: 20%;
-    height: 300px; /* only for demonstration, should be removed */
-    background: rgb(242, 246, 250);
+    height: 600px; /* only for demonstration, should be removed */
+    background: rgb(188, 216, 248);
     padding: 20px;
   }
   
@@ -108,4 +108,7 @@ h3{
 .seleccionUnidad{
   width: 350px;
   height: 300px;
+}
+p{
+  color: black;
 }

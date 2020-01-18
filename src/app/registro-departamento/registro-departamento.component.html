@@ -2,8 +2,8 @@
 <section>
     <nav>
       <ul>
-        <li><a routerLink="agregar">Configurar unidad</a></li>
-        <li><a routerLink="agregar">Editar unidad</a></li>
+        <li><a routerLink="agregar"><p>Configurar unidad</p></a></li>
+        <li><a routerLink="agregar"><p>Editar unidad</p></a></li>
            
         <li><a href="#"></a></li>
       </ul>
@@ -15,7 +15,7 @@
         <div class="col-7">
           <p>Unidades disponibles:</p>
           <form [formGroup]="formAsignacion">
-            <button (click)="agregarUnidades()">Agregar</button>
+           
             <select class="seleccionUnidad"  multiple formControlName="unidadesSeleccionadas">
               <option *ngFor="let unidad of unidadesDisponibles"[ngValue]="unidad" >
                 {{unidad.tipoUnidad.nombre + ', ' + unidad.numero + ' ' + unidad.piso + ' ' + unidad.sector}}
@@ -24,7 +24,7 @@
           </form>
         </div>
         <div class="col-5">
-          Resumen
+          Resumen:
           <div>
             <div *ngFor="let unidad of unidadesSeleccionadas">
               {{unidad.tipoUnidad.nombre + ', ' + unidad.numero + ' ' + unidad.piso + ' ' + unidad.sector}}
@@ -32,5 +32,8 @@
           </div>
         </div>
       </div>
+      <br>
+      <button (click)="agregarUnidades()">Agregar</button>
+      <br>
     </article>
   </section>
