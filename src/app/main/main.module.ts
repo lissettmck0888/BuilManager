@@ -11,7 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PermitidoDirective } from '../directive/permitido.directive';
 import { RegistroDepartamentoComponent } from '../registro-departamento/registro-departamento.component';
 import { GastosComunesComponent } from '../gastos-comunes/gastos-comunes.component';
-
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { GastosComunesComponent } from '../gastos-comunes/gastos-comunes.compone
     FormsModule,
     ReactiveFormsModule,
     MainRoutingModule,
-    AngularDualListBoxModule
+    AngularDualListBoxModule,
+    AngularFontAwesomeModule
   ]
 })
 export class MainModule { }

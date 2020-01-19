@@ -9,7 +9,7 @@
   
   /* Style the header */
   header {
-    background-color: rgb(125, 149, 161);
+    background-color: #75AABF;
     padding: 30px;
     text-align: center;
     font-size: 35px;
@@ -21,7 +21,7 @@
     float: left;
     width: 20%;
     height: 600px; /* only for demonstration, should be removed */
-    background: rgb(188, 216, 248);
+    background: #B0CDD9;
     padding: 20px;
   }
   
@@ -111,4 +111,16 @@ h3{
 }
 p{
   color: black;
+}
+
+.btnEUser{
+   margin: 5px;
+   background-color:rgb(156, 205, 224);
+   border-radius: 8px;
+   height: 40px;
+}
+.barraAutenticacion{
+  text-align: right;
+  background: #2E4559;
+  color:white;
 }
