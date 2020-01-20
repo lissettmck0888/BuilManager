@@ -1,14 +1,14 @@
 <section>
     <nav>
       <ul>
-        <li><a routerLink="/main/comunidad">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}"><a [routerLink]="['/', 'comunidad']">
             <p>Asignaciones</p>
           </a></li>
-        <li><a routerLink="/main/comunidad/personas">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}"><a [routerLink]="['/main/comunidad', 'personas']">
             <p>Personas</p>
           </a></li>
   
-        <li><a href="#"></a></li>
+        <!-- <li><a href="#"></a></li> -->
       </ul>
     </nav>
   
@@ -43,6 +43,7 @@
                     <tr *ngFor="let asignacion of mf.data">
                         <td>{{asignacion.persona.nombres}}</td>
                         <td>{{asignacion.unidades | json}}</td>
+                        <td class="text-right">{{asignacion.tipoAsignacion}}</td>
                         <td class="text-right">{{asignacion.estado}}</td>
                     </tr>
                     </tbody>

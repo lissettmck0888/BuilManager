@@ -15,16 +15,16 @@ import { Router } from '@angular/router';
 export class AsignacionUnidadesComponent implements OnInit {
 
   tipoAsignacionList: any[] = [
-    {cod: 'propietario', alias: 'Propietario'},
-    {cod: 'arriendo', alias: 'Arriendo'}
+    { cod: 'propietario', alias: 'Propietario' },
+    { cod: 'arriendo', alias: 'Arriendo' }
   ];
 
   estadoAsignacionList: any[] = [
-    {cod: 'habitado', alias: 'Habitado'},
-    {cod: 'desocupado', alias: 'Desocupado'}
+    { cod: 'habitado', alias: 'Habitado' },
+    { cod: 'vacio', alias: 'Desocupado' }
   ];
 
-  public unidadesDisponibles : any[];
+  public unidadesDisponibles: any[];
   //public unidadesSeleccionadas : any[] = [];
   public formAsignacion: FormGroup;
 
@@ -41,7 +41,7 @@ export class AsignacionUnidadesComponent implements OnInit {
     private asignacionService: AsignacionService,
     private formBuilder: FormBuilder,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
 
@@ -52,48 +52,62 @@ export class AsignacionUnidadesComponent implements OnInit {
       unidadesSeleccionadas: []
     });
 
-    this.formAsignacion.controls.tipoAsignacion.valueChanges.subscribe(val=>this.nuevaAsignacion.tipoAsignacion=val);
-    this.formAsignacion.controls.estadoAsignacion.valueChanges.subscribe(val=>this.nuevaAsignacion.estado=val);
-
-    this.unidadService.getUnidadesDisponibles().subscribe(data=>{
-      this.unidadesDisponibles=data ;
+    this.formAsignacion.controls.tipoAsignacion.valueChanges.subscribe(val => {
+      this.nuevaAsignacion.tipoAsignacion = val;
+      this.loadUnidades();
     });
-    
+    this.formAsignacion.controls.estadoAsignacion.valueChanges.subscribe(val => this.nuevaAsignacion.estado = val);
+
+
+  }
+
+  private loadUnidades() {
+    this.unidadesDisponibles = [];
+    if (this.nuevaAsignacion.tipoAsignacion === 'propietario') {
+      this.unidadService.getUnidadesSinAsignacion().subscribe(data => {
+        this.unidadesDisponibles = data;
+      });
+    } else if (this.nuevaAsignacion.tipoAsignacion === 'arriendo') {
+
+      this.unidadService.getUnidadesParaArriendo().subscribe(data => {
+        this.unidadesDisponibles = data;
+      });
+    }
   }
 
   guardar() {
-    this.asignacionService.guardarAsignacion(this.nuevaAsignacion).subscribe(resp=>{
+    this.asignacionService.guardarAsignacion(this.nuevaAsignacion).subscribe(resp => {
       console.log(resp);
       this.router.navigate(['/main/comunidad']);
     });
   }
-  
+
   agregarUnidades() {
     const seleccionados: any[] = this.formAsignacion.controls.unidadesSeleccionadas.value;
     console.log(seleccionados);
-    
+
     this.nuevaAsignacion.unidades = this.nuevaAsignacion.unidades.concat(seleccionados);
 
-    this.unidadesDisponibles = this.unidadesDisponibles.filter(unidad=> {
+    this.unidadesDisponibles = this.unidadesDisponibles.filter(unidad => {
       return !this.nuevaAsignacion.unidades.includes(unidad);
     });
 
   }
 
   quitar(idUnidad: number) {
-    const unidad: any = this.nuevaAsignacion.unidades.find(u=>u.idUnidad===idUnidad);
+    const unidad: any = this.nuevaAsignacion.unidades.find(u => u.idUnidad === idUnidad);
     const idx = this.nuevaAsignacion.unidades.indexOf(unidad);
     console.log(idx);
     this.nuevaAsignacion.unidades.splice(idx, 1);
     this.unidadesDisponibles.push(unidad);
-    this.unidadesDisponibles = this.unidadesDisponibles.sort((a,b)=>{
-      if(a.idUnidad>b.idUnidad)return 1;
-      if(a.idUnidad<b.idUnidad)return -1;
+    this.unidadesDisponibles = this.unidadesDisponibles.sort((a, b) => {
+      if (a.idUnidad > b.idUnidad) return 1;
+      if (a.idUnidad < b.idUnidad) return -1;
       return 0;
     });
   }
 
-  
+
   selectEvent(item) {
     // do something with selected item
     console.log('item');
@@ -102,28 +116,28 @@ export class AsignacionUnidadesComponent implements OnInit {
     let run: string = item.name.substring(0, item.name.indexOf(' - '));
     console.log('run');
     console.log(run);
-    const persona: Persona = this.personas.find(persona=> persona.run === run);
+    const persona: Persona = this.personas.find(persona => persona.run === run);
     this.nuevaAsignacion.persona = persona;
     console.log('this.nuevaAsignacion');
     console.log(this.nuevaAsignacion);
   }
- 
+
   onChangeSearch(val: string) {
     // fetch remote data from here
     // And reassign the 'data' which is binded to 'data' property.
-    this.personaService.getByFilter(val).subscribe((data:any[])=>{
+    this.personaService.getByFilter(val).subscribe((data: any[]) => {
       console.log(data);
       this.personas = data;
       let aux: any[] = [];
       data.forEach(persona => {
-        aux.push({"name" : persona.run + ' - ' + persona.nombres + ' ' + persona.apellidoPaterno + ' ' + persona.apellidoMaterno});
+        aux.push({ "name": persona.run + ' - ' + persona.nombres + ' ' + persona.apellidoPaterno + ' ' + persona.apellidoMaterno });
       });
       this.data = aux;
     });
 
   }
-  
-  onFocused(e){
+
+  onFocused(e) {
     // do something when input is focused
   }
 

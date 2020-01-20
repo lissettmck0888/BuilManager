@@ -10,7 +10,7 @@
   /* Style the header */
   header {
     background-color: #81D2E5;
-    padding: 20px;
+    padding: 5px;
     text-align: center;
     font-size: 35px;
     color: white;
@@ -122,4 +122,8 @@ p{
   text-align: right;
   background:#92BF30;
   color:white;
+}
+.active{
+  background-color: #2E4559;
+  color: red;
 }

@@ -11,6 +11,8 @@ import { ComunidadComponent } from '../comunidad/comunidad.component';
 import { AsignacionUnidadesComponent } from '../comunidad/asignacion-unidades/asignacion-unidades.component';
 import { PersonasComponent } from '../comunidad/personas/personas.component';
 import { AgregarPersonaComponent } from '../comunidad/agregar-persona/agregar-persona.component';
+import { GastosComunesComponent } from '../gastos-comunes/gastos-comunes.component';
+import { CargarGastoPeriodoComponent } from '../gastos-comunes/cargar-gasto-periodo/cargar-gasto-periodo.component';
 
 const routes = [
     {
@@ -52,6 +54,14 @@ const routes = [
             {
                 path: 'comunidad/agregar-persona',
                 component: AgregarPersonaComponent
+            },
+            {
+                path: 'gastos-comunes',
+                component: GastosComunesComponent
+            },
+            {
+                path: 'gastos-comunes/cargar',
+                component: CargarGastoPeriodoComponent
             }
         ]
     }/* ,
