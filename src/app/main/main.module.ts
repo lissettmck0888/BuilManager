@@ -17,6 +17,7 @@ import { AsignacionUnidadesComponent } from '../comunidad/asignacion-unidades/as
 import {DataTableModule} from "angular-6-datatable";
 import { PersonasComponent } from '../comunidad/personas/personas.component';
 import { AgregarPersonaComponent } from '../comunidad/agregar-persona/agregar-persona.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AgregarPersonaComponent } from '../comunidad/agregar-persona/agregar-pe
     MainRoutingModule,
     AngularDualListBoxModule,
     AutocompleteLibModule,
-    DataTableModule
+    DataTableModule,
+    AngularFontAwesomeModule
   ]
 })
 export class MainModule { }
