@@ -18,6 +18,8 @@ import {DataTableModule} from "angular-6-datatable";
 import { PersonasComponent } from '../comunidad/personas/personas.component';
 import { AgregarPersonaComponent } from '../comunidad/agregar-persona/agregar-persona.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { CargarGastoPeriodoComponent } from '../gastos-comunes/cargar-gasto-periodo/cargar-gasto-periodo.component';
+import { HistoricoGastosComponent } from '../gastos-comunes/historico-gastos/historico-gastos.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     ComunidadComponent,
     AsignacionUnidadesComponent,
     PersonasComponent,
-    AgregarPersonaComponent
+    AgregarPersonaComponent,
+    CargarGastoPeriodoComponent,
+    HistoricoGastosComponent
   ],
   imports: [
     CommonModule,

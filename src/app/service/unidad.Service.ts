@@ -11,8 +11,12 @@ export class UnidadService {
   
   constructor(private httpClient: HttpClient) { }
 
-  public getUnidadesDisponibles(): Observable<any> {
-    return this.httpClient.get('http://localhost:8080/unidades/');
+  public getUnidadesSinAsignacion(): Observable<any> {
+    return this.httpClient.get('http://localhost:8080/unidades/sin-asignacion');
+  }
+
+  public getUnidadesParaArriendo(): Observable<any> {
+    return this.httpClient.get('http://localhost:8080/unidades/disponibles');
   }
 
   
