@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { UserModel } from '../model/user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RolService } from './rol.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -17,16 +18,23 @@ export class GlobalService {
 
     constructor(private rolService: RolService) { }
 
-    get currentUser(): UserModel {
+    public getCurrentUser(): Observable<UserModel> {
         if(!this._currentUser) {
             this._currentUser = this.jwtHelperService.decodeToken(localStorage.getItem('token'));
             if(this._currentUser){
-                this.rolService.getPermisosRol(this._currentUser.rol).subscribe(data=>{
-                    this.permisos = data;
-                });
+                console.log('recuperando permisos usuario...');
+                return this.rolService.getPermisosRol(this._currentUser.rol).pipe(
+                    map(permisos=>{
+                        this.permisos = permisos;
+                        return this._currentUser;
+                    })
+                );
             }
         }
-        return this._currentUser;
+        return new Observable(obs=>{
+            obs.next(this._currentUser);
+            obs.complete();
+        });
     }
 
     set currentUser(user: UserModel) {
@@ -34,6 +42,9 @@ export class GlobalService {
     }
 
     get permisos(): any[] {
+        if(this._permisos){
+
+        }
         return this._permisos;
     }
 

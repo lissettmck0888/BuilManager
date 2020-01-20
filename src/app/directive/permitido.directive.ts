@@ -17,12 +17,15 @@ export class PermitidoDirective {
   set privilegio(permiso: string) {
     this.permiso = permiso;
     let permision: any = null;
-    if(this.globalService.permisos) {
-      permision = this.globalService.permisos.find(perm=>perm.codigo===permiso);
-    }
-    if(!permision){
-      this.elementRef.nativeElement.style.display = 'none';
-    }
+
+    this.globalService.getCurrentUser().subscribe(user=>{
+      if(this.globalService.permisos) {
+        permision = this.globalService.permisos.find(perm=>perm.codigo===permiso);
+      }
+      if(!permision){
+        this.elementRef.nativeElement.style.display = 'none';
+      }
+    });
   }
 
 }

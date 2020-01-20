@@ -32,11 +32,13 @@ export class LoginComponent implements OnInit {
   public autenticar() {
     this.loginService.autenticar(this.loginForm.value).subscribe(valido => {
       if(valido) {
-        this.rolService.getPermisosRol(this.global.currentUser.rol).subscribe(permisos=>{
-          console.log('permisos');
-          console.log(permisos);
-          this.global.permisos = permisos;
-          this.router.navigate(['main']);
+        this.global.getCurrentUser().subscribe(user=>{
+          this.rolService.getPermisosRol(user.rol).subscribe(permisos=>{
+            console.log('permisos');
+            console.log(permisos);
+            this.global.permisos = permisos;
+            this.router.navigate(['main']);
+          });
         });
       }else {
         console.log('fallo');

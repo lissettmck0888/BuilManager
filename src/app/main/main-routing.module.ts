@@ -7,6 +7,10 @@ import { MainComponent } from './main.component';
 import { AgregarRolComponent } from '../roles/agregar-rol/agregar-rol.component';
 import { AgregarUsuarioComponent } from '../usuarios/agregar-usuario/agregar-usuario.component';
 import { RegistroDepartamentoComponent } from '../registro-departamento/registro-departamento.component';
+import { ComunidadComponent } from '../comunidad/comunidad.component';
+import { AsignacionUnidadesComponent } from '../comunidad/asignacion-unidades/asignacion-unidades.component';
+import { PersonasComponent } from '../comunidad/personas/personas.component';
+import { AgregarPersonaComponent } from '../comunidad/agregar-persona/agregar-persona.component';
 
 const routes = [
     {
@@ -34,8 +38,20 @@ const routes = [
                 component: AgregarUsuarioComponent
             },
             {
-                path: 'registro-departamento',
-                component: RegistroDepartamentoComponent
+                path: 'comunidad',
+                component: ComunidadComponent
+            },
+            {
+                path: 'comunidad/asignacion-unidades',
+                component: AsignacionUnidadesComponent
+            },
+            {
+                path: 'comunidad/personas',
+                component: PersonasComponent
+            },
+            {
+                path: 'comunidad/agregar-persona',
+                component: AgregarPersonaComponent
             }
         ]
     }/* ,

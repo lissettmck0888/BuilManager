@@ -7,17 +7,17 @@
                 </span>
             </div>
 
-            <form [formGroup]="loginForm" class="login100-form validate-form">
+            <form method="POST" [formGroup]="loginForm" (ngSubmit)="autenticar()" class="login100-form validate-form">
                 <div *ngIf="loginError">Usuario o password invalido</div>
                 <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                     <span class="label-input100">Usuario</span>
-                    <input class="input100" type="text" formControlName="userName" name="username" placeholder="Ingresar usuario">
+                    <input class="input100" type="text" formControlName="userName" id="username" name="username" placeholder="Ingresar usuario" autocomplete="username">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
                     <span class="label-input100">Contraseña</span>
-                    <input class="input100" type="password" formControlName="password" name="pass" placeholder="Ingresar contraseña">
+                    <input class="input100" type="password" formControlName="password" id="pass" name="pass" placeholder="Ingresar contraseña" autocomplete="current-password">
                     <span class="focus-input100"></span>
                 </div>
 
@@ -38,7 +38,7 @@
                 <br>
           
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" (click)="autenticar()">
+                    <button type="submit" class="login100-form-btn">
                         Entrar
                     </button>
                 </div>

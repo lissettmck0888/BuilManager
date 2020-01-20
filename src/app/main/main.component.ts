@@ -20,7 +20,10 @@ export class MainComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.user = this.globalService.currentUser;
+    console.log('loading mainComponent....');
+    this.globalService.getCurrentUser().subscribe(user=>{
+      this.user = user;
+    });
   }
 
   cerrarSesion(event) {

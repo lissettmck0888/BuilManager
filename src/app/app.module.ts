@@ -10,8 +10,6 @@ import { CommonModule } from '@angular/common';
 import { AppInterceptor } from './app-interceptor';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GlobalService } from './service/global.service';
-import { RegistroDepartamentoComponent } from './registro-departamento/registro-departamento.component';
-import { GastosComunesComponent } from './gastos-comunes/gastos-comunes.component';
 
 @NgModule({
   declarations: [

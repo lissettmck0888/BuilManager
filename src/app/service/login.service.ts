@@ -27,7 +27,7 @@ export class LoginService {
                 localStorage.setItem('token', token);
                 this.globalService.currentUser = this.jwtHelperService.decodeToken(token);
                 console.log('decoded');
-                console.log(this.globalService.currentUser);
+                //console.log(this.globalService.currentUser);
                 return true;
             }),
             catchError(error=> of(false))
