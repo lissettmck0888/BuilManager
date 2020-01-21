@@ -40,6 +40,10 @@ export class LoginService {
         localStorage.clear();
     }
 
+    public isSessionValid(): boolean {
+        return !this.jwtHelperService.isTokenExpired(localStorage.getItem('token'));
+    }
+
 
 
 }

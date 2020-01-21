@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 import { AppInterceptor } from './app-interceptor';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GlobalService } from './service/global.service';
+import { AuthGuard } from './service/auth.guard';
+import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,8 +32,9 @@ import { GlobalService } from './service/global.service';
       provide: HTTP_INTERCEPTORS,
       useClass: AppInterceptor,
       multi: true,
-      deps: [GlobalService]
-    }
+      deps: [GlobalService, Router]
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

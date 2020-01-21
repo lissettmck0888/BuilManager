@@ -1,7 +1,8 @@
 <section>
     <nav>
         <ul>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/main/gastos-comunes">
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a
+                    routerLink="/main/gastos-comunes">
                     <p>Historico</p>
                 </a></li>
             <!-- <li><a routerLink="/main/gastos-comunes">
@@ -16,36 +17,62 @@
     <article>
         <div class="row">
             <div class="col-12">
-                <a href="#" routerLink="/main/gastos-comunes/cargar">Cargar Gastos Periodo</a>
+                <div style="padding: 20px 0; border: 1px solid black;">
+                    resumen pagos periodo anterior...
+                </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-12">
-
                 <div>
-                    detalle ultimo periodo...
+                    <strong>Gastos Extraordinarios</strong>
                 </div>
-                <!-- <table class="table table-striped" [mfData]="asignacionesList" #mf="mfDataTable" [mfRowsOnPage]="10">
+                <button (click)="toggleAgregarGasto()">Agregar Gasto</button>
+                <table class="table table-striped" [mfData]="asignacionesList" #mf="mfDataTable" [mfRowsOnPage]="10">
                     <thead>
                         <tr>
-                            <th style="width: 20%">
-                                <mfDefaultSorter by="name">Name</mfDefaultSorter>
-                            </th>
-                            <th style="width: 50%">
-                                <mfDefaultSorter by="email">Email</mfDefaultSorter>
-                            </th>
-                            <th style="width: 10%">
-                                <mfDefaultSorter by="age">Age</mfDefaultSorter>
+                            <th style="width: 60%">
+                                <mfDefaultSorter by="item">Item</mfDefaultSorter>
                             </th>
                             <th style="width: 20%">
-                                <mfDefaultSorter by="city">City</mfDefaultSorter>
+                                <mfDefaultSorter by="monto">Monto</mfDefaultSorter>
+                            </th>
+                            <th style="width: 20%">
+
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!- - <tr *ngFor="let asignacion of mf.data">
-                        
-                    </tr> - ->
+                        <tr>
+                            <td>xxx</td>
+                            <td>1580000</td>
+                            <td>acciones</td>
+                        </tr>
+                        <!-- <tr *ngFor="let asignacion of mf.data">
+                            
+                        </tr> -->
+                        <tr *ngIf="addGastoMode">
+                            <td>
+                                <!-- <input type="text" placeholder="Item"> -->
+                                <ng-autocomplete [data]="items" [searchKeyword]="keyword"
+                                    (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)'
+                                    (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+                                    [debounceTime]="500">
+                                </ng-autocomplete>
+
+                                <ng-template #itemTemplate let-item>
+                                    <a [innerHTML]="item.nombre"></a>
+                                </ng-template>
+
+                            </td>
+                            <td><input type="number" placeholder="Monto"></td>
+                            <td>
+                                <button type="button" (click)="actualizarGastoComun()">Agregar</button>
+                                <button type="button" (click)="toggleAgregarGasto()">Cancelar</button>
+                            </td>
+                        </tr>
+
                     </tbody>
                     <tfoot>
                         <tr>
@@ -54,8 +81,13 @@
                             </td>
                         </tr>
                     </tfoot>
-                </table> -->
+                </table>
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="#" routerLink="/main/gastos-comunes/consolidar">Consolidar Gastos Periodo</a>
             </div>
         </div>
     </article>
