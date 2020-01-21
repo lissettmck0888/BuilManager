@@ -5,7 +5,7 @@ export class DetalleGastoComun {
 
     public idDetalleGastoComun: number;
     public monto: number;
-    public gastoComun: GastoComun;
+    public gastoComun: number;
     public itemGastoComun: ItemGastoComun;
 
 }

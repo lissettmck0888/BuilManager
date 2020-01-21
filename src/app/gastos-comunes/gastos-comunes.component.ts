@@ -15,6 +15,7 @@ export class GastosComunesComponent implements OnInit {
 
   public items: ItemGastoComun[];
   public gastoComun: GastoComun;
+  public listaDetalle: DetalleGastoComun[];
   private selectedItem: ItemGastoComun;
 
   public addGastoMode: boolean;
@@ -30,6 +31,7 @@ export class GastosComunesComponent implements OnInit {
       console.log('data gastoComunAbierto');
       console.log(data);
       this.gastoComun = data;
+      this.listaDetalle = this.gastoComun.listaDetalleGastoComun;
 
       this.gastoComunService.getItems().subscribe((items: ItemGastoComun[]) => {
         console.log('items');
@@ -39,12 +41,25 @@ export class GastosComunesComponent implements OnInit {
     });
   }
 
-  public actualizarGastoComun() {
+  public eliminarItemGasto(idDetalle: number) {
+    console.log('idDetalle');
+    console.log(idDetalle);
+    this.gastoComun.listaDetalleGastoComun = this.gastoComun.listaDetalleGastoComun.filter(detalle=>detalle.idDetalleGastoComun!==idDetalle);
+    this.listaDetalle = this.gastoComun.listaDetalleGastoComun;
+    this.actualizarGastoComun();
+  }
+
+  public agregarItemGasto() {
     let detalle: DetalleGastoComun = new DetalleGastoComun();
-    detalle.gastoComun = this.gastoComun;//TODO FIX THIS
+    //detalle.idDetalleGastoComun = 0;
+    detalle.gastoComun = this.gastoComun.idGastoComun;//TODO FIX THIS
     detalle.itemGastoComun = this.selectedItem;
     detalle.monto = 1000;
     this.gastoComun.listaDetalleGastoComun.push(detalle);
+    this.actualizarGastoComun();
+  }
+
+  private actualizarGastoComun() {
     this.gastoComunService.actualizarGastoComun(this.gastoComun).subscribe(resp=>{
       console.log(resp);
       this.selectedItem = null;

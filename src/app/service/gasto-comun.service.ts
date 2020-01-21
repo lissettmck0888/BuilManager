@@ -21,7 +21,7 @@ export class GastoComunService {
         return <Observable<ItemGastoComun[]>>this.httpClient.get('http://localhost:8080/gasto-comun/item/');
     }
 
-    public actualizarGastoComun(gastoComun: GastoComun) {
-        return this.httpClient.put('http://localhost:8080/gasto-comun/', gastoComun);
+    public actualizarGastoComun(gastoComun: GastoComun): Observable<any> {
+        return this.httpClient.post('http://localhost:8080/gasto-comun/', gastoComun);
     }
 }

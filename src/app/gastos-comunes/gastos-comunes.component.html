@@ -29,7 +29,7 @@
                     <strong>Gastos Extraordinarios</strong>
                 </div>
                 <button (click)="toggleAgregarGasto()">Agregar Gasto</button>
-                <table class="table table-striped" [mfData]="asignacionesList" #mf="mfDataTable" [mfRowsOnPage]="10">
+                <table class="table table-striped" [mfData]="listaDetalle" #mf="mfDataTable" [mfRowsOnPage]="10">
                     <thead>
                         <tr>
                             <th style="width: 60%">
@@ -44,14 +44,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>xxx</td>
-                            <td>1580000</td>
-                            <td>acciones</td>
+                        <tr *ngFor="let detalle of mf.data; let i = index">
+                            <td>{{detalle | json}}</td>
+                            <td></td>
+                            <td><button (click)="eliminarItemGasto(detalle.idDetalleGastoComun)">x</button></td>
                         </tr>
-                        <!-- <tr *ngFor="let asignacion of mf.data">
-                            
-                        </tr> -->
                         <tr *ngIf="addGastoMode">
                             <td>
                                 <!-- <input type="text" placeholder="Item"> -->
@@ -68,7 +65,7 @@
                             </td>
                             <td><input type="number" placeholder="Monto"></td>
                             <td>
-                                <button type="button" (click)="actualizarGastoComun()">Agregar</button>
+                                <button type="button" (click)="agregarItemGasto()">Agregar</button>
                                 <button type="button" (click)="toggleAgregarGasto()">Cancelar</button>
                             </td>
                         </tr>
