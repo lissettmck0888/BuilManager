@@ -1,62 +1,66 @@
-<section>
-    <nav>
-      <ul>
+<nav>
+    <ul>
         <li><a routerLink="/main/comunidad">
-            <p>Asignaciones</p>
-          </a></li>
+                <p class="centrar">Asignaciones</p>
+            </a></li>
         <li><a routerLink="/main/comunidad/personas">
-            <p>Personas</p>
-          </a></li>
-  
+                <p class="centrar">Personas</p>
+            </a></li>
+
         <li><a href="#"></a></li>
-      </ul>
-    </nav>
-  
-  
-    <article>
-        <div class="row">
-            <div class="col-12">
-                <a href="#" routerLink="/main/comunidad/agregar-persona">Agregar persona</a>
+    </ul>
+</nav>
+
+
+<article>
+    <div class="contenedor">
+       
+        <div class="centrar">
+            <h5>Listado moradores</h5>
+            <div class="row">
+                <div class="col-12">
+                    <a href="#" routerLink="/main/comunidad/agregar-persona">Agregar persona</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+
+                    <table class="table table-striped" [mfData]="personasList" #mf="mfDataTable" [mfRowsOnPage]="10">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%">
+                                    <mfDefaultSorter by="name">Rut</mfDefaultSorter>
+                                </th>
+                                <th style="width: 50%">
+                                    <mfDefaultSorter by="email">Nombre</mfDefaultSorter>
+                                </th>
+                                <th style="width: 50%">
+                                    <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                                </th>
+                                <th style="width: 10%">
+                                    <mfDefaultSorter by="age">Telefono</mfDefaultSorter>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let persona of mf.data">
+                                <td>{{persona.run}}</td>
+                                <td>{{persona.nombres}} {{persona.apellidoPaterno}} {{persona.apellidoMaterno}}</td>
+                                <td>{{persona.correo}}</td>
+                                <td class="text-right">{{persona.telefono}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-
-                <table class="table table-striped" [mfData]="personasList" #mf="mfDataTable" [mfRowsOnPage]="10">
-                    <thead>
-                    <tr>
-                        <th style="width: 20%">
-                            <mfDefaultSorter by="name">Rut</mfDefaultSorter>
-                        </th>
-                        <th style="width: 50%">
-                            <mfDefaultSorter by="email">Nombre</mfDefaultSorter>
-                        </th>
-                        <th style="width: 50%">
-                            <mfDefaultSorter by="email">Email</mfDefaultSorter>
-                        </th>
-                        <th style="width: 10%">
-                            <mfDefaultSorter by="age">Telefono</mfDefaultSorter>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let persona of mf.data">
-                        <td>{{persona.run}}</td>
-                        <td>{{persona.nombres}} {{persona.apellidoPaterno}} {{persona.apellidoMaterno}}</td>
-                        <td>{{persona.correo}}</td>
-                        <td class="text-right">{{persona.telefono}}</td>
-                    </tr>
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <td colspan="4">
-                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                        </td>
-                    </tr>
-                    </tfoot>
-                </table>
-
-            </div>
-        </div>
-    </article>
-  </section>
+    </div>
+</article>

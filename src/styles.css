@@ -20,8 +20,8 @@
   nav {
     float: left;
     width: 15%;
-    height: 500px; /* only for demonstration, should be removed */
-    background: rgb(208, 241, 233);
+    height: 800px; /* only for demonstration, should be removed */
+    background:rgb(215, 246, 252);
   }
   
   /* Style the list inside the menu */
@@ -69,9 +69,11 @@
   overflow: hidden;
   background-color: #333;
 }
-h3{
+.h3 .h4 .h5{
+  text-align: center;
   margin: auto;
   text-align: center;
+  color:#07597E;
 }
 
 .list {
@@ -101,7 +103,8 @@ h3{
 }
 
 .container{
-  background: rgb(244, 248, 250);
+  margin: auto;
+  position: absolute;
 }
 
 .seleccionUnidad{
@@ -112,7 +115,7 @@ p{
   color: black;
 }
 
-.btnEUser{
+.Botones{
    margin: 5px;
    background-color:rgb(156, 205, 224);
    border-radius: 8px;
@@ -120,10 +123,41 @@ p{
 }
 .barraAutenticacion{
   text-align: right;
-  background:#92BF30;
+  background:#07597E;
   color:white;
 }
 .active{
-  background-color: #2E4559;
+  background-color:#72CCE4;
   color: red;
 }
+.centrar{
+  margin: auto;
+  width: 80%;
+  padding: 10px;
+}
+.centrarAsignacion{
+  margin: auto;
+  width: 120%;
+  padding: 10px;
+}
+
+
+.contenedor{
+   margin: auto;
+   width: 80%;
+   padding: 10px;
+   border-radius: 5px 5px 5px 5px;
+}
+.contenedoAsignacion{
+  margin: auto;
+  width: 120%;
+  padding: 10px;
+
+  border-radius: 5px 5px 5px 5px;
+}
+
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: rgb(215, 246, 252); 
+ }
