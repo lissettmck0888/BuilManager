@@ -7,5 +7,5 @@ export class Unidad{
     public piso: number;
     public numero: string;
     public sector: string;
-    public prorrateo: number;
+    public rating: number;
 }

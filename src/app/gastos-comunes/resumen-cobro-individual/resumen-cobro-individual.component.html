@@ -1,1 +1,90 @@
-<p>resumen-cobro-individual works!</p>
+<section>
+    <nav>
+        <ul>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a
+                    routerLink="/main/gastos-comunes">
+                    <p>Historico</p>
+                </a></li>
+            <!-- <li><a routerLink="/main/gastos-comunes">
+                    <p>yyyy</p>
+                </a></li> -->
+
+            <li><a href="#"></a></li>
+        </ul>
+    </nav>
+    <article>
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <div>
+                            <span>Total Periodo</span>
+                            <span>15850000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div>
+                    <strong>Detalle Individual</strong>
+                </div>
+                <form>
+                    <table style="width: 100%;" class="table-sm table-striped" [mfData]="listaDetalle" #mf="mfDataTable" [mfRowsOnPage]="10">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%">
+                                    <mfDefaultSorter by="item">Unidad</mfDefaultSorter>
+                                </th>
+                                <th style="width: 30%">
+                                    <mfDefaultSorter by="monto">Responsable</mfDefaultSorter>
+                                </th>
+                                <th style="width: 5%">
+                                    <mfDefaultSorter by="item">% Prorrateo</mfDefaultSorter>
+                                </th>
+                                <th style="width: 15%">
+                                    <mfDefaultSorter by="monto">Monto Actual</mfDefaultSorter>
+                                </th>
+                                <th style="width: 15%">
+                                    <mfDefaultSorter by="item">Monto Anterior</mfDefaultSorter>
+                                </th>
+                                <th style="width: 15%">
+                                    <mfDefaultSorter by="monto">Total Periodo</mfDefaultSorter>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <tr *ngFor="let detalle of mf.data; let i = index">
+                                <td>{{detalle.itemGastoComun.nombre}}</td>
+                                <td>detalle.monto</td>
+                                <td><button (click)="eliminarItemGasto(detalle.idDetalleGastoComun)">x</button></td>
+                            </tr> -->
+                            <tr>
+                                <td>xxx</td>
+                                <td>xxx</td>
+                                <td>xxx</td>
+                                <td>xxx</td>
+                                <td>xxx</td>
+                                <td>xxx</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="#" routerLink="/main/gastos-comunes/consolidar">Confirmar</a>
+            </div>
+        </div>
+    </article>
+</section>
