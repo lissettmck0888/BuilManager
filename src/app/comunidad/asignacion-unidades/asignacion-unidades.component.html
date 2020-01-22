@@ -1,10 +1,10 @@
 <nav></nav>
 <article>
-  
+
   <div class="contenedor">
     <a routerLink="/main/comunidad">Volver</a>
     <div class="centrar">
-      
+
       <h3>Asignación de unidades por persona</h3>
       <br>
       <br>
@@ -42,30 +42,30 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-7">
-        <p>Unidades disponibles:</p>
-        <select style="width: 100%;" class="seleccionUnidad" multiple formControlName="unidadesSeleccionadas">
-          <option *ngFor="let unidad of unidadesDisponibles" [ngValue]="unidad">
-            {{unidad.tipoUnidad.nombre + ' ' + unidad.numero + ', piso ' + unidad.piso + ', sector ' + unidad.sector + ' - rating: ' + unidad.rating}}
-          </option>
-        </select>
-      </div>
-      <div class="col-5">
-        Resumen:
-        <div>
-          <div *ngFor="let unidad of nuevaAsignacion.unidades">
-            {{unidad.tipoUnidad.nombre + ', ' + unidad.numero + ' ' + unidad.piso + ' ' + unidad.sector}} 
-            <button (click)="quitar(unidad.idUnidad)">Eliminar</button>
+        <div class="row">
+          <div class="col-7">
+            <p>Unidades disponibles:</p>
+            <select style="width: 100%;" class="seleccionUnidad" multiple formControlName="unidadesSeleccionadas">
+              <option *ngFor="let unidad of unidadesDisponibles" [ngValue]="unidad">
+                {{unidad.tipoUnidad.nombre + ' ' + unidad.numero + ', piso ' + unidad.piso + ', sector ' + unidad.sector + ' - rating: ' + unidad.rating}}
+              </option>
+            </select>
+          </div>
+          <div class="col-5">
+            Resumen:
+            <div>
+              <div *ngFor="let unidad of nuevaAsignacion.unidades">
+                {{unidad.tipoUnidad.nombre + ', ' + unidad.numero + ' ' + unidad.piso + ' ' + unidad.sector}}
+                <button (click)="quitar(unidad.idUnidad)">Eliminar</button>
+              </div>
+            </div>
+            <br>
+            <button class="Botones" (click)="agregarUnidades()">Agregar</button>
+            &nbsp;<button class="Botones" (click)="guardar()">Guardar Asignacion</button>
+            <br>
+            <br>
           </div>
         </div>
-        <br>
-        <button class="Botones" (click)="agregarUnidades()">Agregar</button>
-        &nbsp;<button class="Botones" (click)="guardar()">Guardar Asignacion</button>
-        <br>
-        <br>
       </form>
     </div>
   </div>
