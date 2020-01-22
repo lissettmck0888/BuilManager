@@ -1,34 +1,46 @@
-<form [formGroup]="formAsignacion">
-    <div class="row">
-      <div class="col-12">
-        <div class="form-group">
-          Seleccionar Persona
-          <ng-autocomplete [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
-            (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
-            [notFoundTemplate]="notFoundTemplate" [debounceTime]="500">
-          </ng-autocomplete>
+<nav></nav>
+<article>
+  
+  <div class="contenedor">
+    <a routerLink="/main/comunidad">Volver</a>
+    <div class="centrar">
+      
+      <h3>Asignación de unidades por persona</h3>
+      <br>
+      <br>
+      <form [formGroup]="formAsignacion">
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              Seleccionar Persona
+              <ng-autocomplete [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
+                (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+                [notFoundTemplate]="notFoundTemplate" [debounceTime]="500">
+              </ng-autocomplete>
 
-          <ng-template #itemTemplate let-item>
-            <a [innerHTML]="item.name"></a>
-          </ng-template>
+              <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.name"></a>
+              </ng-template>
 
-          <ng-template #notFoundTemplate let-notFound>
-            <div [innerHTML]="notFound"></div>
-          </ng-template>
-        </div>
-        <div class="form-group">
-          Tipo Asignacion
-          <select formControlName="tipoAsignacion">
-            <option>Seleccione...</option>
-            <option *ngFor="let t of tipoAsignacionList" [ngValue]="t.cod">{{t.alias}}</option>
-          </select>
-        </div>
-        <div class="form-group">
-          Estado
-          <select formControlName="estadoAsignacion">
-            <option>Seleccione...</option>
-            <option *ngFor="let t of estadoAsignacionList" [ngValue]="t.cod">{{t.alias}}</option>
-          </select>
+              <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+              </ng-template>
+            </div>
+            <div class="form-group">
+              Tipo Asignacion
+              <select formControlName="tipoAsignacion">
+                <option>Seleccione...</option>
+                <option *ngFor="let t of tipoAsignacionList" [ngValue]="t.cod">{{t.alias}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              Estado
+              <select formControlName="estadoAsignacion">
+                <option>Seleccione...</option>
+                <option *ngFor="let t of estadoAsignacionList" [ngValue]="t.cod">{{t.alias}}</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -49,10 +61,12 @@
             <button (click)="quitar(unidad.idUnidad)">Eliminar</button>
           </div>
         </div>
-      </div>
+        <br>
+        <button class="Botones" (click)="agregarUnidades()">Agregar</button>
+        &nbsp;<button class="Botones" (click)="guardar()">Guardar Asignacion</button>
+        <br>
+        <br>
+      </form>
     </div>
-    <br>
-    <button (click)="agregarUnidades()">Agregar</button>
-    <button (click)="guardar()">Guardar Asignacion</button>
-    <br>
-  </form>
+  </div>
+</article>

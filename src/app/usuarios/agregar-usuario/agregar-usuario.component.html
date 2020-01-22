@@ -1,22 +1,39 @@
-<div class="container">
-    <div class="elementos">
-        <h3>Agregar Usuarios</h3>
-        <a routerLink="/main/usuarios">Volver</a>
-        <br>
-        <br>
+<nav></nav>
+<article>
+    <div class="contenedor">
+        <div class="centrar">
+            <a routerLink="/main/usuarios">Volver</a>
+        <h4>Agregar Usuarios</h4>
         <form [formGroup]="formUsuarios">
-            <p>Nombre: <input type="text" formControlName="nombreUsuario" name="nombre" required></p>
-            <p>Contraseña: <input type="text" formControlName="contrasena" name="constrasena" required></p>
-            <p>Perfiles:
-                <select formControlName="rol">
+            <table style="width:60%">
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Nombre:</td>
+                    <td><input type="text" formControlName="nombreUsuario" name="nombre" required></td>
+                </tr>
+                <tr>
+                    <td>Contraseña:</td>
+                    <td><input type="text" formControlName="contrasena" name="constrasena" required></td>
+                </tr>
+                <tr>
+                    <td>Perfiles:</td>
+                    <td><select formControlName="rol">
 
-                    <option id="">Seleccione</option>
-                    <option *ngFor="let rol of roles" [ngValue]="rol.idRol">{{rol.nombre}}</option>
-                </select>
-            </p>
+                            <option id="">Seleccione</option>
+                            <option *ngFor="let rol of roles" [ngValue]="rol.idRol">{{rol.nombre}}</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button class="Botones" (click)="guardarUsuario()">Guardar</button>
+                    </td>
+                </tr>
+            </table>
         </form>
-        <button (click)="guardarUsuario()">Guardar</button>
-
     </div>
-   
-</div>
+    </div>
+</article>

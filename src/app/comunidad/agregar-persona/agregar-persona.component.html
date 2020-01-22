@@ -1,6 +1,12 @@
-<div class="row">
-    <div class="col-12">
-        <form [formGroup]="formPersona" (ngSubmit)="agregarPersona()">
+<nav></nav>
+<article>
+  <div class="contenedor">
+    <h5>Ingreso datos personas</h5>
+    <a routerLink="/main/comunidad/personas">Volver</a>
+    <div class="centrar">
+      <div class="row">
+        <div class="col-12">
+          <form [formGroup]="formPersona" (ngSubmit)="agregarPersona()">
             <div class="form-group">
               <label for="rut">Rut</label>
               <input type="text" class="form-control" formControlName="rut" id="rut" placeholder="Rut">
@@ -11,11 +17,13 @@
             </div>
             <div class="form-group">
               <label for="paterno">Apellido Paterno</label>
-              <input type="text" class="form-control" formControlName="apPaterno" id="paterno" placeholder="Apellido Paterno">
+              <input type="text" class="form-control" formControlName="apPaterno" id="paterno"
+                placeholder="Apellido Paterno">
             </div>
             <div class="form-group">
               <label for="materno">Apellido Materno</label>
-              <input type="text" class="form-control" formControlName="apMaterno" id="materno" placeholder="Apellido Materno">
+              <input type="text" class="form-control" formControlName="apMaterno" id="materno"
+                placeholder="Apellido Materno">
             </div>
             <div class="form-group">
               <label for="celular">Celular</label>
@@ -25,7 +33,10 @@
               <label for="email">Email</label>
               <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button class="Botones" type="submit" >Guardar</button>
           </form>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</article>
