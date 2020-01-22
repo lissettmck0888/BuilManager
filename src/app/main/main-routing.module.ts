@@ -12,12 +12,15 @@ import { AsignacionUnidadesComponent } from '../comunidad/asignacion-unidades/as
 import { PersonasComponent } from '../comunidad/personas/personas.component';
 import { AgregarPersonaComponent } from '../comunidad/agregar-persona/agregar-persona.component';
 import { GastosComunesComponent } from '../gastos-comunes/gastos-comunes.component';
-import { CargarGastoPeriodoComponent } from '../gastos-comunes/cargar-gasto-periodo/cargar-gasto-periodo.component';
+import { AuthGuard } from '../service/auth.guard';
+import { ConsolidarGastosComponent } from '../gastos-comunes/consolidar-gastos/consolidar-gastos.component';
+import { ResumenCobroIndividualComponent } from '../gastos-comunes/resumen-cobro-individual/resumen-cobro-individual.component';
 
 const routes = [
     {
         path: '',
         component: MainComponent,
+        canActivateChild: [AuthGuard],
         children: [
             {
                 path: 'usuarios',
@@ -60,8 +63,12 @@ const routes = [
                 component: GastosComunesComponent
             },
             {
-                path: 'gastos-comunes/cargar',
-                component: CargarGastoPeriodoComponent
+                path: 'gastos-comunes/consolidar',
+                component: ConsolidarGastosComponent
+            },
+            {
+                path: 'gastos-comunes/resumen',
+                component: ResumenCobroIndividualComponent
             }
         ]
     }/* ,

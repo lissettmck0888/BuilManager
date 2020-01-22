@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
 import { MainResolverService } from './main/main-resolver.service';
+import { AuthGuard } from './service/auth.guard';
 
 const routes = [
   {
@@ -12,6 +13,7 @@ const routes = [
   {
     path: 'main',
     resolve: {resolverData: MainResolverService},
+    canActivate: [AuthGuard],
     children: [
       {
         path: '', loadChildren: './main/main.module#MainModule'
