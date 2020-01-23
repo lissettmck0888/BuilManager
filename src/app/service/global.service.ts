@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class GlobalService {
 
-    public baseUrl: string = 'http://190.46.181.162:8080';
+    public baseUrl: string = 'http://190.46.181.162:4200/builmanager-api';
     private jwtHelperService: JwtHelperService = new JwtHelperService();
     
     private _currentUser: UserModel;
