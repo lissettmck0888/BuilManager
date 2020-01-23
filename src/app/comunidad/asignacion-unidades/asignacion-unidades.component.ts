@@ -27,15 +27,14 @@ export class AsignacionUnidadesComponent implements OnInit {
   ];
 
   public unidadesDisponibles: any[];
-  //public unidadesSeleccionadas : any[] = [];
   public formAsignacion: FormGroup;
 
   keyword = 'name';
   data = [];
 
   private personas: Persona[];
-
   public nuevaAsignacion: Asignacion = new Asignacion();
+  public unidadCopropietarioYaSeleccionada: boolean;
 
   constructor(
     private personaService: PersonaService,
@@ -66,7 +65,7 @@ export class AsignacionUnidadesComponent implements OnInit {
   private loadUnidades() {
     this.unidadesDisponibles = [];
     if (this.nuevaAsignacion.tipoAsignacion === 'propietario') {
-      this.unidadService.getUnidadesSinAsignacion().subscribe(data => {
+      this.unidadService.getUnidadesSinAsignacionUnidadCopropiedad().subscribe(data => {
         this.unidadesDisponibles = data;
       });
     } else if (this.nuevaAsignacion.tipoAsignacion === 'arriendo') {
@@ -84,34 +83,23 @@ export class AsignacionUnidadesComponent implements OnInit {
     });
   }
 
-  agregarUnidades() {
-    const seleccionados: Unidad[] = this.formAsignacion.controls.unidadesSeleccionadas.value;
-    console.log(seleccionados);
+  agregarUnidadCopropiedad() {
+    const unidadSeleccionada: Unidad = this.formAsignacion.controls.unidadesSeleccionadas.value;
+    console.log(unidadSeleccionada);
 
-    seleccionados.forEach(unidad=>{
-      let asignacionUnidad: AsignacionUnidad = new AsignacionUnidad();
-      asignacionUnidad.unidad = unidad;
-      asignacionUnidad.unidadCopropiedad = unidad.tipoUnidad.idTipoUnidad === 1;
-      this.nuevaAsignacion.asignacionUnidades.push(asignacionUnidad);
-    });
+    let asignacionUnidad: AsignacionUnidad = new AsignacionUnidad();
+    asignacionUnidad.unidad = unidadSeleccionada;
+    asignacionUnidad.unidadCopropiedad = unidadSeleccionada.tipoUnidad.idTipoUnidad === 1;
+    this.nuevaAsignacion.asignacionUnidades.push(asignacionUnidad);
 
-    this.unidadesDisponibles = this.unidadesDisponibles.filter(unidad => {
-      return !seleccionados.includes(unidad);
-    });
-
+    this.unidadCopropietarioYaSeleccionada = true;
   }
-
-  quitar(idUnidad: number) {
-    const unidad: any = this.nuevaAsignacion.asignacionUnidades.find(u => u.unidad.idUnidad === idUnidad);
-    const idx = this.nuevaAsignacion.asignacionUnidades.indexOf(unidad);
+  
+  quitarUnidadCopropiedad(asignacionUnidad: AsignacionUnidad) {
+    const idx = this.nuevaAsignacion.asignacionUnidades.indexOf(asignacionUnidad);
     console.log(idx);
-    this.nuevaAsignacion.asignacionUnidades.splice(idx, 1);
-    this.unidadesDisponibles.push(unidad);
-    this.unidadesDisponibles = this.unidadesDisponibles.sort((a, b) => {
-      if (a.idUnidad > b.idUnidad) return 1;
-      if (a.idUnidad < b.idUnidad) return -1;
-      return 0;
-    });
+    this.nuevaAsignacion.asignacionUnidades = this.nuevaAsignacion.asignacionUnidades.filter(a=>!(a.unidad.idUnidad === asignacionUnidad.unidad.idUnidad));
+    this.unidadCopropietarioYaSeleccionada = false;
   }
 
 
