@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Persona } from 'src/app/model/persona.model';
 import { Asignacion } from 'src/app/model/asignacion.model';
 import { PersonaService } from 'src/app/service/persona.service';
@@ -26,6 +26,7 @@ export class AsignacionUnidadesComponent implements OnInit {
     { cod: 'vacio', alias: 'Desocupado' }
   ];
 
+  public unidadesCopropiedadDisponibles: any[];
   public unidadesDisponibles: any[];
   public formAsignacion: FormGroup;
 
@@ -47,33 +48,39 @@ export class AsignacionUnidadesComponent implements OnInit {
   ngOnInit() {
 
     this.formAsignacion = this.formBuilder.group({
-      idPersona: [],
-      tipoAsignacion: [],
-      estadoAsignacion: [],
-      unidadesSeleccionadas: []
+      idPersona: new FormControl(),
+      tipoAsignacion: new FormControl(),
+      estadoAsignacion: new FormControl(),
+      unidadCopropiedadSeleccionada: new FormControl(),
+      unidadesSeleccionadas: new FormControl([])
     });
 
     this.formAsignacion.controls.tipoAsignacion.valueChanges.subscribe(val => {
       this.nuevaAsignacion.tipoAsignacion = val;
-      this.loadUnidades();
+      this.loadUnidadesCopropiedad();
     });
     this.formAsignacion.controls.estadoAsignacion.valueChanges.subscribe(val => this.nuevaAsignacion.estado = val);
 
-
   }
 
-  private loadUnidades() {
-    this.unidadesDisponibles = [];
+  private loadUnidadesCopropiedad() {
+    this.unidadesCopropiedadDisponibles = [];
     if (this.nuevaAsignacion.tipoAsignacion === 'propietario') {
       this.unidadService.getUnidadesSinAsignacionUnidadCopropiedad().subscribe(data => {
-        this.unidadesDisponibles = data;
+        this.unidadesCopropiedadDisponibles = data;
       });
     } else if (this.nuevaAsignacion.tipoAsignacion === 'arriendo') {
 
       this.unidadService.getUnidadesParaArriendo().subscribe(data => {
-        this.unidadesDisponibles = data;
+        this.unidadesCopropiedadDisponibles = data;
       });
     }
+  }
+
+  private loadPropiedades() {
+    this.unidadService.getUnidadesSinAsignacion().subscribe(data => {
+      this.unidadesDisponibles = data;
+    });
   }
 
   guardar() {
@@ -84,7 +91,7 @@ export class AsignacionUnidadesComponent implements OnInit {
   }
 
   agregarUnidadCopropiedad() {
-    const unidadSeleccionada: Unidad = this.formAsignacion.controls.unidadesSeleccionadas.value;
+    const unidadSeleccionada: Unidad = this.formAsignacion.controls.unidadCopropiedadSeleccionada.value;
     console.log(unidadSeleccionada);
 
     let asignacionUnidad: AsignacionUnidad = new AsignacionUnidad();
@@ -92,7 +99,22 @@ export class AsignacionUnidadesComponent implements OnInit {
     asignacionUnidad.unidadCopropiedad = unidadSeleccionada.tipoUnidad.idTipoUnidad === 1;
     this.nuevaAsignacion.asignacionUnidades.push(asignacionUnidad);
 
+    this.loadPropiedades();
     this.unidadCopropietarioYaSeleccionada = true;
+
+  }
+
+  agregarUnidadesAdicionales() {
+    const unidadesSeleccionadas: Unidad[] = this.formAsignacion.controls.unidadesSeleccionadas.value;
+    console.log(unidadesSeleccionadas);
+
+    unidadesSeleccionadas.forEach(u=>{
+      let asignacionUnidad: AsignacionUnidad = new AsignacionUnidad();
+      asignacionUnidad.unidad = u;
+      asignacionUnidad.unidadCopropiedad = u.tipoUnidad.idTipoUnidad === 1;
+      this.nuevaAsignacion.asignacionUnidades.push(asignacionUnidad);
+    });
+    
   }
   
   quitarUnidadCopropiedad(asignacionUnidad: AsignacionUnidad) {

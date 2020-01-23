@@ -44,8 +44,8 @@
         <div class="row">
           <div class="col-7">
             <p>Seleccionar unidad/es de copropiedad</p>
-            <select style="width: 100%;" class="seleccionUnidad" formControlName="unidadesSeleccionadas" *ngIf="!unidadCopropietarioYaSeleccionada">
-              <option *ngFor="let unidad of unidadesDisponibles" [ngValue]="unidad">
+            <select style="width: 100%;" formControlName="unidadCopropiedadSeleccionada" *ngIf="!unidadCopropietarioYaSeleccionada">
+              <option *ngFor="let unidad of unidadesCopropiedadDisponibles" [ngValue]="unidad">
                 {{unidad.tipoUnidad.nombre + ' ' + unidad.numero + ', piso ' + unidad.piso + ', sector ' + unidad.sector + ' - rating: ' + unidad.rating}}
               </option>
             </select>
@@ -70,7 +70,12 @@
         <div class="row" *ngIf="unidadCopropietarioYaSeleccionada">
           <div class="col-12">
             <p>Seleccionar unidad/es adicionales</p>
-            <p>estacionamientos, bodegas, etc.</p>
+            <select style="width: 100%;" class="seleccionUnidad" multiple formControlName="unidadesSeleccionadas">
+              <option *ngFor="let unidad of unidadesDisponibles" [ngValue]="unidad">
+                {{unidad.tipoUnidad.nombre + ' ' + unidad.numero + ', piso ' + unidad.piso + ', sector ' + unidad.sector + ' - rating: ' + unidad.rating}}
+              </option>
+            </select>
+            <button class="Botones" (click)="agregarUnidadesAdicionales()">Agregar</button>
           </div>
         </div>
         <div class="row">
