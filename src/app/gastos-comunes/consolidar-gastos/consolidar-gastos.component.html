@@ -1,2 +1,93 @@
-<p>consolidar-gastos works!</p>
-<a href="#" routerLink="/main/gastos-comunes/resumen">Consolidar Gastos Periodo</a>
+<section>
+    <nav>
+        <ul>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a
+                    routerLink="/main/gastos-comunes">
+                    <p>Historico</p>
+                </a></li>
+            <!-- <li><a routerLink="/main/gastos-comunes">
+                    <p>yyyy</p>
+                </a></li> -->
+
+            <li><a href="#"></a></li>
+        </ul>
+    </nav>
+
+
+    <article>
+        <div class="row">
+            <div class="col-8">
+                <div>
+                    <strong>Detalle Gastos</strong>
+                </div>
+                <table style="width: 100%;" class="table-sm">
+                    <thead>
+                        <tr>
+                            <th style="width: 60%">Item</th>
+                            <th style="width: 20%">Monto</th>
+                            <th style="width: 20%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">Gastos Ordinarios</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <table class="table table-hover" [mfData]="gastosOrdinariosList"
+                                    #listOrdinarios="mfDataTable">
+                                    <tbody>
+                                        <tr *ngFor="let itemPlantilla of listOrdinarios.data; let i = index">
+                                            <td style="width: 60%">{{itemPlantilla.itemGastoComun.nombre}}</td>
+                                            <td style="width: 20%">{{itemPlantilla.monto}}</td>
+                                            <td style="width: 20%;">
+                                                <button
+                                                    (click)="eliminarItemGasto(detalle.idDetalleGastoComun)">x</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Gastos Extraordinarios</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <table class="table table-hover" [mfData]="gastosExtraordinariosList"
+                                    #listExtraordinarios="mfDataTable">
+                                    <tbody>
+                                        <tr *ngFor="let item of listExtraordinarios.data; let i = index">
+                                            <td style="width: 60%">{{item.itemGastoComun.nombre}}</td>
+                                            <td style="width: 20%">{{item.monto}}</td>
+                                            <td style="width: 20%;">
+                                                <button
+                                                    (click)="eliminarItemGasto(detalle.idDetalleGastoComun)">x</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Resumen</h6>
+                        <div>
+                            <span>Total Periodo</span>
+                            <span>15850000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="#" routerLink="/main/gastos-comunes/resumen">Cerrar periodo y generar cobros</a>
+            </div>
+        </div>
+    </article>
+</section>

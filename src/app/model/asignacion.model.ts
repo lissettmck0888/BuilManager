@@ -1,5 +1,6 @@
 import { Unidad } from './unidad.model';
 import { Persona } from './persona.model';
+import { AsignacionUnidad } from './asignacion-unidad.model';
 
 export class Asignacion {
 
@@ -8,5 +9,5 @@ export class Asignacion {
     public tipoAsignacion: string;
     public estado: string;
     public fechaAsignacion: string;
-    public unidades: Unidad[] = [];
+    public asignacionUnidades: AsignacionUnidad[] = [];
 }

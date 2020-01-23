@@ -21,8 +21,12 @@ export class GastoComunService {
     public getItems(): Observable<ItemGastoComun[]> {
         return <Observable<ItemGastoComun[]>>this.httpClient.get(this.global.baseUrl+'/gasto-comun/item/');
     }
-
+    
     public actualizarGastoComun(gastoComun: GastoComun): Observable<any> {
         return this.httpClient.post(this.global.baseUrl+'/gasto-comun/', gastoComun);
+    }
+    
+    public getPlantillaGastosOrdinarios(): Observable<any[]> {
+        return <Observable<any[]>>this.httpClient.get('http://localhost:8080/gasto-comun/plantilla/');
     }
 }

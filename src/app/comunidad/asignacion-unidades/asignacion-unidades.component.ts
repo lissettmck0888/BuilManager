@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Persona } from 'src/app/model/persona.model';
 import { Asignacion } from 'src/app/model/asignacion.model';
 import { PersonaService } from 'src/app/service/persona.service';
 import { UnidadService } from 'src/app/service/unidad.Service';
 import { AsignacionService } from 'src/app/service/asignacion.service';
 import { Router } from '@angular/router';
+import { AsignacionUnidad } from 'src/app/model/asignacion-unidad.model';
+import { Unidad } from 'src/app/model/unidad.model';
 
 @Component({
   selector: 'app-asignacion-unidades',
@@ -24,16 +26,16 @@ export class AsignacionUnidadesComponent implements OnInit {
     { cod: 'vacio', alias: 'Desocupado' }
   ];
 
+  public unidadesCopropiedadDisponibles: any[];
   public unidadesDisponibles: any[];
-  //public unidadesSeleccionadas : any[] = [];
   public formAsignacion: FormGroup;
 
   keyword = 'name';
   data = [];
 
   private personas: Persona[];
-
   public nuevaAsignacion: Asignacion = new Asignacion();
+  public unidadCopropietarioYaSeleccionada: boolean;
 
   constructor(
     private personaService: PersonaService,
@@ -46,33 +48,39 @@ export class AsignacionUnidadesComponent implements OnInit {
   ngOnInit() {
 
     this.formAsignacion = this.formBuilder.group({
-      idPersona: [],
-      tipoAsignacion: [],
-      estadoAsignacion: [],
-      unidadesSeleccionadas: []
+      idPersona: new FormControl(),
+      tipoAsignacion: new FormControl(),
+      estadoAsignacion: new FormControl(),
+      unidadCopropiedadSeleccionada: new FormControl(),
+      unidadesSeleccionadas: new FormControl([])
     });
 
     this.formAsignacion.controls.tipoAsignacion.valueChanges.subscribe(val => {
       this.nuevaAsignacion.tipoAsignacion = val;
-      this.loadUnidades();
+      this.loadUnidadesCopropiedad();
     });
     this.formAsignacion.controls.estadoAsignacion.valueChanges.subscribe(val => this.nuevaAsignacion.estado = val);
 
-
   }
 
-  private loadUnidades() {
-    this.unidadesDisponibles = [];
+  private loadUnidadesCopropiedad() {
+    this.unidadesCopropiedadDisponibles = [];
     if (this.nuevaAsignacion.tipoAsignacion === 'propietario') {
-      this.unidadService.getUnidadesSinAsignacion().subscribe(data => {
-        this.unidadesDisponibles = data;
+      this.unidadService.getUnidadesSinAsignacionUnidadCopropiedad().subscribe(data => {
+        this.unidadesCopropiedadDisponibles = data;
       });
     } else if (this.nuevaAsignacion.tipoAsignacion === 'arriendo') {
 
       this.unidadService.getUnidadesParaArriendo().subscribe(data => {
-        this.unidadesDisponibles = data;
+        this.unidadesCopropiedadDisponibles = data;
       });
     }
+  }
+
+  private loadPropiedades() {
+    this.unidadService.getUnidadesSinAsignacion().subscribe(data => {
+      this.unidadesDisponibles = data;
+    });
   }
 
   guardar() {
@@ -82,29 +90,38 @@ export class AsignacionUnidadesComponent implements OnInit {
     });
   }
 
-  agregarUnidades() {
-    const seleccionados: any[] = this.formAsignacion.controls.unidadesSeleccionadas.value;
-    console.log(seleccionados);
+  agregarUnidadCopropiedad() {
+    const unidadSeleccionada: Unidad = this.formAsignacion.controls.unidadCopropiedadSeleccionada.value;
+    console.log(unidadSeleccionada);
 
-    this.nuevaAsignacion.unidades = this.nuevaAsignacion.unidades.concat(seleccionados);
+    let asignacionUnidad: AsignacionUnidad = new AsignacionUnidad();
+    asignacionUnidad.unidad = unidadSeleccionada;
+    asignacionUnidad.unidadCopropiedad = unidadSeleccionada.tipoUnidad.idTipoUnidad === 1;
+    this.nuevaAsignacion.asignacionUnidades.push(asignacionUnidad);
 
-    this.unidadesDisponibles = this.unidadesDisponibles.filter(unidad => {
-      return !this.nuevaAsignacion.unidades.includes(unidad);
-    });
+    this.loadPropiedades();
+    this.unidadCopropietarioYaSeleccionada = true;
 
   }
 
-  quitar(idUnidad: number) {
-    const unidad: any = this.nuevaAsignacion.unidades.find(u => u.idUnidad === idUnidad);
-    const idx = this.nuevaAsignacion.unidades.indexOf(unidad);
-    console.log(idx);
-    this.nuevaAsignacion.unidades.splice(idx, 1);
-    this.unidadesDisponibles.push(unidad);
-    this.unidadesDisponibles = this.unidadesDisponibles.sort((a, b) => {
-      if (a.idUnidad > b.idUnidad) return 1;
-      if (a.idUnidad < b.idUnidad) return -1;
-      return 0;
+  agregarUnidadesAdicionales() {
+    const unidadesSeleccionadas: Unidad[] = this.formAsignacion.controls.unidadesSeleccionadas.value;
+    console.log(unidadesSeleccionadas);
+
+    unidadesSeleccionadas.forEach(u=>{
+      let asignacionUnidad: AsignacionUnidad = new AsignacionUnidad();
+      asignacionUnidad.unidad = u;
+      asignacionUnidad.unidadCopropiedad = u.tipoUnidad.idTipoUnidad === 1;
+      this.nuevaAsignacion.asignacionUnidades.push(asignacionUnidad);
     });
+    
+  }
+  
+  quitarUnidadCopropiedad(asignacionUnidad: AsignacionUnidad) {
+    const idx = this.nuevaAsignacion.asignacionUnidades.indexOf(asignacionUnidad);
+    console.log(idx);
+    this.nuevaAsignacion.asignacionUnidades = this.nuevaAsignacion.asignacionUnidades.filter(a=>!(a.unidad.idUnidad === asignacionUnidad.unidad.idUnidad));
+    this.unidadCopropietarioYaSeleccionada = false;
   }
 
 
