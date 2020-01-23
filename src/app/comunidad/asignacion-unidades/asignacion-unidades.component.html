@@ -1,7 +1,7 @@
 <nav></nav>
 <article>
   
-  <div class="contenedor">
+  <div class="contenedorAsignacion">
     <a routerLink="/main/comunidad">Volver</a>
     <div class="centrar">
       
@@ -56,7 +56,7 @@
             <div>
               <div *ngFor="let unidad of nuevaAsignacion.unidades">
                 {{unidad.tipoUnidad.nombre + ', ' + unidad.numero + ' ' + unidad.piso + ' ' + unidad.sector}}
-                <button (click)="quitar(unidad.idUnidad)">Eliminar</button>
+                <button class="Botones"   (click)="quitar(unidad.idUnidad)" title="Elimminar"><i class="fa fa-times" aria-hidden="true"></i></button>
               </div>
             </div>
           </div>

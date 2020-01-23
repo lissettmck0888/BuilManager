@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GastoComun } from '../model/gasto-comun.model';
 import { ItemGastoComun } from '../model/item-gasto-comun.model';
+import { GlobalService } from './global.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,18 +11,18 @@ import { ItemGastoComun } from '../model/item-gasto-comun.model';
 export class GastoComunService {
 
     constructor(
-        private httpClient: HttpClient
+        private httpClient: HttpClient, private global: GlobalService
     ) {}
 
     public getGastoComunAbierto(): Observable<GastoComun> {
-        return <Observable<GastoComun>>this.httpClient.get('http://localhost:8080/gasto-comun/abierto');
+        return <Observable<GastoComun>>this.httpClient.get(this.global.baseUrl+'/gasto-comun/abierto');
     }
 
     public getItems(): Observable<ItemGastoComun[]> {
-        return <Observable<ItemGastoComun[]>>this.httpClient.get('http://localhost:8080/gasto-comun/item/');
+        return <Observable<ItemGastoComun[]>>this.httpClient.get(this.global.baseUrl+'/gasto-comun/item/');
     }
 
     public actualizarGastoComun(gastoComun: GastoComun): Observable<any> {
-        return this.httpClient.post('http://localhost:8080/gasto-comun/', gastoComun);
+        return this.httpClient.post(this.global.baseUrl+'/gasto-comun/', gastoComun);
     }
 }

@@ -14,6 +14,7 @@
 
 
     <article>
+        <div class="contenedorAsignacion">
         <div class="row">
             <div class="col-12">
                 <div style="padding: 20px 0; border: 1px solid black;">
@@ -27,7 +28,7 @@
                 <div>
                     <strong>Gastos Extraordinarios</strong>
                 </div>
-                <button (click)="toggleAgregarGasto()">Agregar Gasto</button>
+                <button class="Botones"(click)="toggleAgregarGasto()">Agregar Gasto</button>
                 <table class="table table-striped" [mfData]="listaDetalle" #mf="mfDataTable" [mfRowsOnPage]="10">
                     <thead>
                         <tr>
@@ -46,7 +47,7 @@
                         <tr *ngFor="let detalle of mf.data; let i = index">
                             <td>{{detalle | json}}</td>
                             <td></td>
-                            <td><button (click)="eliminarItemGasto(detalle.idDetalleGastoComun)">x</button></td>
+                            <td><button (click)="eliminarItemGasto(detalle.idDetalleGastoComun)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
                         </tr>
                         <tr *ngIf="addGastoMode">
                             <td>
@@ -64,8 +65,8 @@
                             </td>
                             <td><input type="number" placeholder="Monto"></td>
                             <td>
-                                <button type="button" (click)="agregarItemGasto()">Agregar</button>
-                                <button type="button" (click)="toggleAgregarGasto()">Cancelar</button>
+                                <button class="Botones"  type="button" (click)="agregarItemGasto()">Agregar</button>
+                                <button class="Botones" type="button" (click)="toggleAgregarGasto()">Cancelar</button>
                             </td>
                         </tr>
 
@@ -85,6 +86,7 @@
             <div class="col-12">
                 <a href="#" routerLink="/main/gastos-comunes/consolidar">Consolidar Gastos Periodo</a>
             </div>
+        </div>
         </div>
     </article>
 </section>

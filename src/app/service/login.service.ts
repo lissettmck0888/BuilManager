@@ -20,7 +20,7 @@ export class LoginService {
         ) { }
 
     public autenticar(credenciales: any): Observable<boolean> {
-        return this.httpservice.post('http://localhost:8080/login', credenciales, { responseType: 'text' }).pipe(
+        return this.httpservice.post(this.globalService.baseUrl+'/login', credenciales, { responseType: 'text' }).pipe(
             map(token => {
                 console.log('token');
                 console.log(token);
