@@ -58,7 +58,7 @@
             <div>
               <div *ngFor="let asignacionUnidad of nuevaAsignacion.asignacionUnidades">
                 {{asignacionUnidad.unidad.tipoUnidad.nombre + ', ' + asignacionUnidad.unidad.numero + ' ' + asignacionUnidad.unidad.piso + ' ' + asignacionUnidad.unidad.sector}}
-                <button (click)="quitarUnidadCopropiedad(asignacionUnidad)">Eliminar</button>
+                <button class="Botones" (click)="quitarUnidadCopropiedad(asignacionUnidad)" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></button>
               </div>
             </div>
             <br>

@@ -41,8 +41,10 @@
                                             <td style="width: 60%">{{itemPlantilla.itemGastoComun.nombre}}</td>
                                             <td style="width: 20%">{{itemPlantilla.monto}}</td>
                                             <td style="width: 20%;">
-                                                <button
-                                                    (click)="eliminarItemGasto(detalle.idDetalleGastoComun)">x</button>
+                                                <button class="Botones"
+                                                    (click)="eliminarItemGasto(detalle.idDetalleGastoComun)"><i class="fa fa-times"
+                                                    aria-hidden="true"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -61,8 +63,9 @@
                                             <td style="width: 60%">{{item.itemGastoComun.nombre}}</td>
                                             <td style="width: 20%">{{item.monto}}</td>
                                             <td style="width: 20%;">
-                                                <button
-                                                    (click)="eliminarItemGasto(detalle.idDetalleGastoComun)">x</button>
+                                                <button class="Botones"
+                                                    (click)="eliminarItemGasto(detalle.idDetalleGastoComun)"><i class="fa fa-times"
+                                                    aria-hidden="true"></i></button>
                                             </td>
                                         </tr>
                                     </tbody>
