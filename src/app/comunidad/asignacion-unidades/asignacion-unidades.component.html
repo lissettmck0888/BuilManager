@@ -54,8 +54,8 @@
           <div class="col-5">
             Resumen:
             <div>
-              <div *ngFor="let unidad of nuevaAsignacion.unidades">
-                {{unidad.tipoUnidad.nombre + ', ' + unidad.numero + ' ' + unidad.piso + ' ' + unidad.sector}}
+              <div *ngFor="let asignacionUnidad of nuevaAsignacion.asignacionUnidades">
+                {{asignacionUnidad.unidad.tipoUnidad.nombre + ', ' + asignacionUnidad.unidad.numero + ' ' + asignacionUnidad.unidad.piso + ' ' + asignacionUnidad.unidad.sector}}
                 <button (click)="quitar(unidad.idUnidad)">Eliminar</button>
               </div>
             </div>

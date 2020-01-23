@@ -6,6 +6,8 @@ import { PersonaService } from 'src/app/service/persona.service';
 import { UnidadService } from 'src/app/service/unidad.Service';
 import { AsignacionService } from 'src/app/service/asignacion.service';
 import { Router } from '@angular/router';
+import { AsignacionUnidad } from 'src/app/model/asignacion-unidad.model';
+import { Unidad } from 'src/app/model/unidad.model';
 
 @Component({
   selector: 'app-asignacion-unidades',
@@ -83,22 +85,27 @@ export class AsignacionUnidadesComponent implements OnInit {
   }
 
   agregarUnidades() {
-    const seleccionados: any[] = this.formAsignacion.controls.unidadesSeleccionadas.value;
+    const seleccionados: Unidad[] = this.formAsignacion.controls.unidadesSeleccionadas.value;
     console.log(seleccionados);
 
-    this.nuevaAsignacion.unidades = this.nuevaAsignacion.unidades.concat(seleccionados);
+    seleccionados.forEach(unidad=>{
+      let asignacionUnidad: AsignacionUnidad = new AsignacionUnidad();
+      asignacionUnidad.unidad = unidad;
+      asignacionUnidad.unidadCopropiedad = unidad.tipoUnidad.idTipoUnidad === 1;
+      this.nuevaAsignacion.asignacionUnidades.push(asignacionUnidad);
+    });
 
     this.unidadesDisponibles = this.unidadesDisponibles.filter(unidad => {
-      return !this.nuevaAsignacion.unidades.includes(unidad);
+      return !seleccionados.includes(unidad);
     });
 
   }
 
   quitar(idUnidad: number) {
-    const unidad: any = this.nuevaAsignacion.unidades.find(u => u.idUnidad === idUnidad);
-    const idx = this.nuevaAsignacion.unidades.indexOf(unidad);
+    const unidad: any = this.nuevaAsignacion.asignacionUnidades.find(u => u.unidad.idUnidad === idUnidad);
+    const idx = this.nuevaAsignacion.asignacionUnidades.indexOf(unidad);
     console.log(idx);
-    this.nuevaAsignacion.unidades.splice(idx, 1);
+    this.nuevaAsignacion.asignacionUnidades.splice(idx, 1);
     this.unidadesDisponibles.push(unidad);
     this.unidadesDisponibles = this.unidadesDisponibles.sort((a, b) => {
       if (a.idUnidad > b.idUnidad) return 1;
