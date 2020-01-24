@@ -6,6 +6,7 @@ import { UserModel } from '../model/user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { GlobalService } from './global.service';
 import { Router } from '@angular/router';
+import { Constants } from '../shared/constants';
 
 @Injectable({
     providedIn: 'root'
@@ -20,7 +21,7 @@ export class LoginService {
         ) { }
 
     public autenticar(credenciales: any): Observable<boolean> {
-        return this.httpservice.post(this.globalService.baseUrl+'/login', credenciales, { responseType: 'text' }).pipe(
+        return this.httpservice.post(Constants.baseUrl+'/login', credenciales, { responseType: 'text' }).pipe(
             map(token => {
                 console.log('token');
                 console.log(token);

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Asignacion } from '../model/asignacion.model';
 import { GlobalService } from './global.service';
+import { Constants } from '../shared/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ export class AsignacionService {
   constructor(private httpservice : HttpClient, private global: GlobalService) { }
 
   public guardarAsignacion(asignacion: Asignacion): Observable<any>{
-    return this.httpservice.post(this.global.baseUrl+'/asignacion/', asignacion);
+    return this.httpservice.post(Constants.baseUrl+'/asignacion/', asignacion);
   }
   
   public obtenerAsignaciones(): Observable<Asignacion[]>{
-    return <Observable<Asignacion[]>>this.httpservice.get(this.global.baseUrl+'/asignacion/all');
+    return <Observable<Asignacion[]>>this.httpservice.get(Constants.baseUrl+'/asignacion/all');
   }
   
 }
