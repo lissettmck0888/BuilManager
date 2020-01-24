@@ -5,6 +5,8 @@ export class DetalleGastoComun {
 
     public idDetalleGastoComun: number;
     public monto: number;
+    public montoAnterior: number;
+    public montoTotal: number;
     public gastoComun: number;
     public itemGastoComun: ItemGastoComun;
 

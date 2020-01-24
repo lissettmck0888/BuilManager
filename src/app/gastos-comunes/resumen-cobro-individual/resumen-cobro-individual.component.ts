@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DetalleDeudaUnidad } from 'src/app/model/detalle-deuda-unidad.model';
 
 @Component({
   selector: 'app-resumen-cobro-individual',
@@ -7,6 +8,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./resumen-cobro-individual.component.css']
 })
 export class ResumenCobroIndividualComponent implements OnInit {
+
+  public detalleDeudaUnidadList: DetalleDeudaUnidad[];
 
   constructor(
     private activatedRoute: ActivatedRoute
@@ -16,6 +19,7 @@ export class ResumenCobroIndividualComponent implements OnInit {
 
     this.activatedRoute.data.subscribe(data=>{
       console.log(data);
+      this.detalleDeudaUnidadList = data.data;
     });
   }
 

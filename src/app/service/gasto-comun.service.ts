@@ -5,6 +5,8 @@ import { GastoComun } from '../model/gasto-comun.model';
 import { ItemGastoComun } from '../model/item-gasto-comun.model';
 import { GlobalService } from './global.service';
 import { Constants } from '../shared/constants';
+import { PlantillaGastosOrdinarios } from '../model/plantilla-gastos-ordinarios.model';
+import { DetalleDeudaUnidad } from '../model/detalle-deuda-unidad.model';
 
 @Injectable({
     providedIn: 'root'
@@ -27,14 +29,14 @@ export class GastoComunService {
         return this.httpClient.post(Constants.baseUrl+'/gasto-comun/', gastoComun);
     }
     
-    public getPlantillaGastosOrdinarios(): Observable<any[]> {
+    public getPlantillaGastosOrdinarios(): Observable<PlantillaGastosOrdinarios[]> {
         return <Observable<any[]>>this.httpClient.get(Constants.baseUrl+'/gasto-comun/plantilla/');
     }
 
     public cerrarGastoComun(gastoComun: GastoComun): Observable<any> {
         return this.httpClient.post(Constants.baseUrl+'/gasto-comun/cerrar', gastoComun);
     }
-    public prorratearGastoComun(): Observable<any> {
-        return this.httpClient.post(Constants.baseUrl+'/gasto-comun/prorratear', null);
+    public prorratearGastoComun(): Observable<DetalleDeudaUnidad[]> {
+        return <Observable<DetalleDeudaUnidad[]>>this.httpClient.post(Constants.baseUrl+'/gasto-comun/prorratear', null);
     }
 }
