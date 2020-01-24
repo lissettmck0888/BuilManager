@@ -5,6 +5,7 @@ export class DetalleDeudaUnidad {
 
     
     public idDetalleDeudaUnidad: number;
+    public responsable: string;
     public monto: number;
     public montoAnterior: number;
     public montoTotal: number;
