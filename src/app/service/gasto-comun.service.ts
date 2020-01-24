@@ -30,4 +30,11 @@ export class GastoComunService {
     public getPlantillaGastosOrdinarios(): Observable<any[]> {
         return <Observable<any[]>>this.httpClient.get(Constants.baseUrl+'/gasto-comun/plantilla/');
     }
+
+    public cerrarGastoComun(gastoComun: GastoComun): Observable<any> {
+        return this.httpClient.post(Constants.baseUrl+'/gasto-comun/cerrar', gastoComun);
+    }
+    public prorratearGastoComun(): Observable<any> {
+        return this.httpClient.post(Constants.baseUrl+'/gasto-comun/prorratear', null);
+    }
 }

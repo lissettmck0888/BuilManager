@@ -15,6 +15,7 @@ import { GastosComunesComponent } from '../gastos-comunes/gastos-comunes.compone
 import { AuthGuard } from '../service/auth.guard';
 import { ConsolidarGastosComponent } from '../gastos-comunes/consolidar-gastos/consolidar-gastos.component';
 import { ResumenCobroIndividualComponent } from '../gastos-comunes/resumen-cobro-individual/resumen-cobro-individual.component';
+import { DetalleIndividualResolver } from '../service/detalle-individual-resolver.service';
 
 const routes = [
     {
@@ -68,6 +69,7 @@ const routes = [
             },
             {
                 path: 'gastos-comunes/resumen',
+                resolve: {data: DetalleIndividualResolver},
                 component: ResumenCobroIndividualComponent
             }
         ]
