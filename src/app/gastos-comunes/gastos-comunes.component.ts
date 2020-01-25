@@ -8,8 +8,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-gastos-comunes',
   templateUrl: './gastos-comunes.component.html',
-  styleUrls: ['./gastos-comunes.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./gastos-comunes.component.css']
 })
 export class GastosComunesComponent implements OnInit {
   ngOnInit(): void {

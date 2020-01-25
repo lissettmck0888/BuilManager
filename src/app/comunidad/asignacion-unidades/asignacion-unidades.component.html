@@ -41,42 +41,43 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-7">
-            <p>Seleccionar unidad/es de copropiedad</p>
-            <select style="width: 100%;" formControlName="unidadCopropiedadSeleccionada" *ngIf="!unidadCopropietarioYaSeleccionada">
+          <div class="col-7"  *ngIf="!unidadCopropietarioYaSeleccionada">
+            <p>Seleccionar unidad de copropiedad</p>
+            <select style="width: 100%;" formControlName="unidadCopropiedadSeleccionada">
               <option *ngFor="let unidad of unidadesCopropiedadDisponibles" [ngValue]="unidad">
                 {{unidad.tipoUnidad.nombre + ' ' + unidad.numero + ', piso ' + unidad.piso + ', sector ' + unidad.sector + ' - rating: ' + unidad.rating}}
               </option>
             </select>
+            <button class="Botones" (click)="agregarUnidadCopropiedad()">Agregar</button>
             <div *ngIf="unidadCopropietarioYaSeleccionada">
               <strong>{{nuevaAsignacion.asignacionUnidades[0].unidad.tipoUnidad.nombre + ' ' + nuevaAsignacion.asignacionUnidades[0].unidad.numero}}</strong>
             </div>
           </div>
+          <!-- <div class="row"> -->
+            <div class="col-7"  *ngIf="unidadCopropietarioYaSeleccionada">
+              <p>Seleccionar unidades adicionales</p>
+              <select style="width: 100%;" class="seleccionUnidad" multiple formControlName="unidadesSeleccionadas">
+                <option *ngFor="let unidad of unidadesDisponibles" [ngValue]="unidad">
+                  {{unidad.tipoUnidad.nombre + ' ' + unidad.numero + ', piso ' + unidad.piso + ', sector ' + unidad.sector + ' - rating: ' + unidad.rating}}
+                </option>
+              </select>
+              <button class="Botones" (click)="agregarUnidadesAdicionales()">Agregar</button>
+            </div>
+          <!-- </div> -->
           <div class="col-5">
             Resumen:
             <div>
               <div *ngFor="let asignacionUnidad of nuevaAsignacion.asignacionUnidades">
                 {{asignacionUnidad.unidad.tipoUnidad.nombre + ', ' + asignacionUnidad.unidad.numero + ' ' + asignacionUnidad.unidad.piso + ' ' + asignacionUnidad.unidad.sector}}
-                <button class="Botones" (click)="quitarUnidadCopropiedad(asignacionUnidad)" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <button class="Botones" (click)="quitarUnidad(asignacionUnidad)" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></button>
               </div>
             </div>
             <br>
-            <button class="Botones" (click)="agregarUnidadCopropiedad()">Agregar</button>
             <br>
             <br>
           </div>
         </div>
-        <div class="row" *ngIf="unidadCopropietarioYaSeleccionada">
-          <div class="col-12">
-            <p>Seleccionar unidad/es adicionales</p>
-            <select style="width: 100%;" class="seleccionUnidad" multiple formControlName="unidadesSeleccionadas">
-              <option *ngFor="let unidad of unidadesDisponibles" [ngValue]="unidad">
-                {{unidad.tipoUnidad.nombre + ' ' + unidad.numero + ', piso ' + unidad.piso + ', sector ' + unidad.sector + ' - rating: ' + unidad.rating}}
-              </option>
-            </select>
-            <button class="Botones" (click)="agregarUnidadesAdicionales()">Agregar</button>
-          </div>
-        </div>
+        
         <div class="row">
           <button class="Botones" (click)="guardar()">Guardar Asignacion</button>
         </div>

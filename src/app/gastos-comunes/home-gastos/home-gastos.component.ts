@@ -4,6 +4,7 @@ import { GastoComun } from 'src/app/model/gasto-comun.model';
 import { DetalleGastoComun } from 'src/app/model/detalle-gasto-comun.model';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { GastoComunService } from 'src/app/service/gasto-comun.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home-gastos',
@@ -25,7 +26,8 @@ export class HomeGastosComponent implements OnInit {
   constructor(
     private gastoComunService: GastoComunService,
     private fb: FormBuilder,
-    private cdr: ChangeDetectorRef
+    //private cdr: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -36,15 +38,22 @@ export class HomeGastosComponent implements OnInit {
     });
 
     // TODO mover a resolver
-    this.gastoComunService.getGastoComunAbierto().subscribe(data => {
-      this.gastoComun = data;
+
+    this.activatedRoute.data.subscribe(data => {
+      console.log('data resolver');
+      console.log(data);
+      this.gastoComun = data.resolverData.gastoComun;
       this.listaDetalle = this.gastoComun.listaDetalleGastoComun;
+      this.items = data.resolverData.items;
+      //this.cdr.detectChanges();
+
+    });
+    /* this.gastoComunService.getGastoComunAbierto().subscribe(data => {
+      this.gastoComun = data;
 
       this.gastoComunService.getItems().subscribe((items: ItemGastoComun[]) => {
-        this.items = items;
-        this.cdr.detectChanges();
       });
-    });
+    }); */
   }
 
   public eliminarItemGasto(idDetalle: number) {
@@ -58,13 +67,14 @@ export class HomeGastosComponent implements OnInit {
     if(!this.selectedItem) {
       this.selectedItem = new ItemGastoComun();
       this.selectedItem.nombre = this.formItemGasto.controls.item.value;
+      this.selectedItem.tipo = 'extraordinario';
     }
     detalle.itemGastoComun = this.selectedItem;
     detalle.monto = this.formItemGasto.controls.monto.value;
     this.gastoComun.listaDetalleGastoComun.push(detalle);
     this.actualizarGastoComun();
     this.toggleAgregarGasto();
-    this.formItemGasto.controls.item.reset();
+    this.formItemGasto.reset();
   }
   
   private actualizarGastoComun() {
@@ -73,6 +83,7 @@ export class HomeGastosComponent implements OnInit {
       this.gastoComun = resp;
       this.listaDetalle = this.gastoComun.listaDetalleGastoComun;
       this.selectedItem = null;
+      this.gastoComunService.getItems().subscribe(items=>this.items = items);
     });
   }
 

@@ -9,6 +9,7 @@ import { ListaAsignacionesComponent } from './lista-asignaciones/lista-asignacio
 import { AsignacionUnidadesComponent } from './asignacion-unidades/asignacion-unidades.component';
 import { DataTableModule } from 'angular-6-datatable';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 
@@ -20,7 +21,8 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     ReactiveFormsModule,
     ComunidadRoutingModule,
     AutocompleteLibModule,
-    DataTableModule
+    DataTableModule,
+    AngularFontAwesomeModule
   ]
 })
 export class ComunidadModule { }

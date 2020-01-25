@@ -117,11 +117,15 @@ export class AsignacionUnidadesComponent implements OnInit {
     
   }
   
-  quitarUnidadCopropiedad(asignacionUnidad: AsignacionUnidad) {
+  quitarUnidad(asignacionUnidad: AsignacionUnidad) {
     const idx = this.nuevaAsignacion.asignacionUnidades.indexOf(asignacionUnidad);
     console.log(idx);
     this.nuevaAsignacion.asignacionUnidades = this.nuevaAsignacion.asignacionUnidades.filter(a=>!(a.unidad.idUnidad === asignacionUnidad.unidad.idUnidad));
-    this.unidadCopropietarioYaSeleccionada = false;
+    
+    if(asignacionUnidad.unidadCopropiedad){
+      this.unidadCopropietarioYaSeleccionada = false;
+      this.nuevaAsignacion.asignacionUnidades = [];
+    }
   }
 
 

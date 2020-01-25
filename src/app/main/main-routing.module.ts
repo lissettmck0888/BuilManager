@@ -33,6 +33,10 @@ const routes = [
             {
                 path: 'gastos-comunes',
                 loadChildren: '../gastos-comunes/gastos-comunes.module#GastosComunesModule'
+            },
+            {
+                path: 'abonos',
+                loadChildren: '../abonos/abonos.module#AbonosModule'
             }
         ]
     }

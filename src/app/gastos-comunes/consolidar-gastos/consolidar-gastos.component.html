@@ -2,7 +2,7 @@
     <article>
         <div class="row">
             <div class="col-12">
-                Gasto Comun Periodo <strong>{{gastoComun.periodo}}</strong>
+                Gasto Comun Periodo <strong style="font-size: larger;">{{gastoComun.periodo | date : 'MMMM yyyy' : locale : 'es-AR'}}</strong>
             </div>
             <div class="col-8">
                 <div>
@@ -27,12 +27,12 @@
                                     <tbody>
                                         <tr *ngFor="let itemPlantilla of listOrdinarios.data; let i = index">
                                             <td style="width: 60%">{{itemPlantilla.itemGastoComun.nombre}}</td>
-                                            <td style="width: 20%">{{itemPlantilla.monto}}</td>
+                                            <td style="width: 20%">{{itemPlantilla.monto | currency:'USD' : 'symbol' : '1.0-0'}}</td>
                                             <td style="width: 20%;">
-                                                <button class="Botones"
+                                                <!-- <button class="Botones"
                                                     (click)="eliminarItemGasto(detalle.idDetalleGastoComun)"><i class="fa fa-times"
                                                     aria-hidden="true"></i>
-                                                </button>
+                                                </button> -->
                                             </td>
                                         </tr>
                                     </tbody>
@@ -49,11 +49,11 @@
                                     <tbody>
                                         <tr *ngFor="let item of listExtraordinarios.data; let i = index">
                                             <td style="width: 60%">{{item.itemGastoComun.nombre}}</td>
-                                            <td style="width: 20%">{{item.monto}}</td>
+                                            <td style="width: 20%">{{item.monto | currency:'USD' : 'symbol' : '1.0-0'}}</td>
                                             <td style="width: 20%;">
-                                                <button class="Botones"
+                                                <!-- <button class="Botones"
                                                     (click)="eliminarItemGasto(detalle.idDetalleGastoComun)"><i class="fa fa-times"
-                                                    aria-hidden="true"></i></button>
+                                                    aria-hidden="true"></i></button> -->
                                             </td>
                                         </tr>
                                     </tbody>
@@ -68,8 +68,7 @@
                     <div class="card-body">
                         <h6 class="card-subtitle mb-2 text-muted">Resumen</h6>
                         <div>
-                            <span>Total Periodo</span>
-                            <span>15850000</span>
+                            <span>Total Periodo     {{sumaParcial | currency:'USD' : 'symbol' : '1.0-0'}}</span>
                         </div>
                     </div>
                 </div>
