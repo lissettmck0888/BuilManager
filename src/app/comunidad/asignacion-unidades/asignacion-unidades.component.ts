@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Persona } from 'src/app/model/persona.model';
 import { Asignacion } from 'src/app/model/asignacion.model';
 import { PersonaService } from 'src/app/service/persona.service';
@@ -30,6 +30,10 @@ export class AsignacionUnidadesComponent implements OnInit {
   public unidadesDisponibles: any[];
   public formAsignacion: FormGroup;
 
+  formConErrores: boolean;
+
+  @ViewChild('auto', {static: false}) auto;
+  
   keyword = 'name';
   data = [];
 
@@ -48,10 +52,10 @@ export class AsignacionUnidadesComponent implements OnInit {
   ngOnInit() {
 
     this.formAsignacion = this.formBuilder.group({
-      idPersona: new FormControl(),
-      tipoAsignacion: new FormControl(),
-      estadoAsignacion: new FormControl(),
-      unidadCopropiedadSeleccionada: new FormControl(),
+      idPersona: new FormControl(null, Validators.required),
+      tipoAsignacion: new FormControl(null, Validators.required),
+      estadoAsignacion: new FormControl(null, Validators.required),
+      unidadCopropiedadSeleccionada: new FormControl(null, Validators.required),
       unidadesSeleccionadas: new FormControl([])
     });
 
@@ -91,16 +95,22 @@ export class AsignacionUnidadesComponent implements OnInit {
   }
 
   agregarUnidadCopropiedad() {
-    const unidadSeleccionada: Unidad = this.formAsignacion.controls.unidadCopropiedadSeleccionada.value;
-    console.log(unidadSeleccionada);
-
-    let asignacionUnidad: AsignacionUnidad = new AsignacionUnidad();
-    asignacionUnidad.unidad = unidadSeleccionada;
-    asignacionUnidad.unidadCopropiedad = unidadSeleccionada.tipoUnidad.idTipoUnidad === 1;
-    this.nuevaAsignacion.asignacionUnidades.push(asignacionUnidad);
-
-    this.loadPropiedades();
-    this.unidadCopropietarioYaSeleccionada = true;
+    console.log(this.formAsignacion.value);
+    if(this.formAsignacion.valid){
+      const unidadSeleccionada: Unidad = this.formAsignacion.controls.unidadCopropiedadSeleccionada.value;
+      console.log(unidadSeleccionada);
+  
+      let asignacionUnidad: AsignacionUnidad = new AsignacionUnidad();
+      asignacionUnidad.unidad = unidadSeleccionada;
+      asignacionUnidad.unidadCopropiedad = unidadSeleccionada.tipoUnidad.idTipoUnidad === 1;
+      this.nuevaAsignacion.asignacionUnidades.push(asignacionUnidad);
+  
+      this.loadPropiedades();
+      this.unidadCopropietarioYaSeleccionada = true;
+      this.formConErrores = false;
+    }else{
+      this.formConErrores = true;
+    }
 
   }
 
@@ -125,6 +135,9 @@ export class AsignacionUnidadesComponent implements OnInit {
     if(asignacionUnidad.unidadCopropiedad){
       this.unidadCopropietarioYaSeleccionada = false;
       this.nuevaAsignacion.asignacionUnidades = [];
+      this.formAsignacion.reset();
+      this.formConErrores = false;
+      //this.auto.close();
     }
   }
 
@@ -139,6 +152,7 @@ export class AsignacionUnidadesComponent implements OnInit {
     console.log(run);
     const persona: Persona = this.personas.find(persona => persona.run === run);
     this.nuevaAsignacion.persona = persona;
+    this.formAsignacion.controls.idPersona.setValue(persona.idPersona);
     console.log('this.nuevaAsignacion');
     console.log(this.nuevaAsignacion);
   }

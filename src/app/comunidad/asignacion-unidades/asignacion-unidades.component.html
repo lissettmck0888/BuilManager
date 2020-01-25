@@ -9,9 +9,14 @@
       <form [formGroup]="formAsignacion">
         <div class="row">
           <div class="col-12">
+            <div *ngIf="formConErrores"><div class="warning">Ingrese todos los datos</div></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
             <div class="form-group">
               Seleccionar Persona
-              <ng-autocomplete [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
+              <ng-autocomplete #auto [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
                 (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
                 [notFoundTemplate]="notFoundTemplate" [debounceTime]="500">
               </ng-autocomplete>
@@ -25,7 +30,7 @@
               </ng-template>
             </div>
             <div class="form-group">
-              Tipo Asignacion
+              Condición
               <select formControlName="tipoAsignacion">
                 <option>Seleccione...</option>
                 <option *ngFor="let t of tipoAsignacionList" [ngValue]="t.cod">{{t.alias}}</option>
@@ -45,7 +50,7 @@
             <p>Seleccionar unidad de copropiedad</p>
             <select style="width: 100%;" formControlName="unidadCopropiedadSeleccionada">
               <option *ngFor="let unidad of unidadesCopropiedadDisponibles" [ngValue]="unidad">
-                {{unidad.tipoUnidad.nombre + ' ' + unidad.numero + ', piso ' + unidad.piso + ', sector ' + unidad.sector + ' - rating: ' + unidad.rating}}
+                {{unidad.tipoUnidad.nombre + ' ' + unidad.numero + ', piso ' + unidad.piso + ', sector ' + unidad.sector}}
               </option>
             </select>
             <button class="Botones" (click)="agregarUnidadCopropiedad()">Agregar</button>
@@ -58,7 +63,7 @@
               <p>Seleccionar unidades adicionales</p>
               <select style="width: 100%;" class="seleccionUnidad" multiple formControlName="unidadesSeleccionadas">
                 <option *ngFor="let unidad of unidadesDisponibles" [ngValue]="unidad">
-                  {{unidad.tipoUnidad.nombre + ' ' + unidad.numero + ', piso ' + unidad.piso + ', sector ' + unidad.sector + ' - rating: ' + unidad.rating}}
+                  {{unidad.tipoUnidad.nombre + ' ' + unidad.numero + ', piso ' + unidad.piso + ', sector ' + unidad.sector}}
                 </option>
               </select>
               <button class="Botones" (click)="agregarUnidadesAdicionales()">Agregar</button>

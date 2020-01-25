@@ -161,3 +161,7 @@ p{
 .table-striped>tbody>tr:nth-child(odd)>th {
    background-color: rgb(215, 246, 252); 
  }
+
+ .warning{
+   color: red;
+ }

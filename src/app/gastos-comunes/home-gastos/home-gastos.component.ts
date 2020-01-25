@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ItemGastoComun } from 'src/app/model/item-gasto-comun.model';
 import { GastoComun } from 'src/app/model/gasto-comun.model';
 import { DetalleGastoComun } from 'src/app/model/detalle-gasto-comun.model';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { GastoComunService } from 'src/app/service/gasto-comun.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -22,6 +22,7 @@ export class HomeGastosComponent implements OnInit {
   public addGastoMode: boolean;
 
   formItemGasto: FormGroup;
+  formConErrores: boolean;
 
   constructor(
     private gastoComunService: GastoComunService,
@@ -33,8 +34,8 @@ export class HomeGastosComponent implements OnInit {
   ngOnInit() {
 
     this.formItemGasto = this.fb.group({
-      item: new FormControl(''),
-      monto: new FormControl(0)
+      item: new FormControl(null, Validators.required),
+      monto: new FormControl(null, Validators.required)
     });
 
     // TODO mover a resolver
@@ -64,17 +65,23 @@ export class HomeGastosComponent implements OnInit {
   public agregarItemGasto() {
     let detalle: DetalleGastoComun = new DetalleGastoComun();
     detalle.gastoComun = this.gastoComun.idGastoComun;
-    if(!this.selectedItem) {
-      this.selectedItem = new ItemGastoComun();
-      this.selectedItem.nombre = this.formItemGasto.controls.item.value;
-      this.selectedItem.tipo = 'extraordinario';
+    if(this.formItemGasto.valid) {
+      
+      if(!this.selectedItem) {
+        this.selectedItem = new ItemGastoComun();
+        this.selectedItem.nombre = this.formItemGasto.controls.item.value;
+        this.selectedItem.tipo = 'extraordinario';
+      }
+      detalle.itemGastoComun = this.selectedItem;
+      detalle.monto = this.formItemGasto.controls.monto.value;
+      this.gastoComun.listaDetalleGastoComun.push(detalle);
+      this.actualizarGastoComun();
+      this.toggleAgregarGasto();
+      this.formItemGasto.reset();
+      this.formConErrores = false;
+    }else {
+      this.formConErrores = true;
     }
-    detalle.itemGastoComun = this.selectedItem;
-    detalle.monto = this.formItemGasto.controls.monto.value;
-    this.gastoComun.listaDetalleGastoComun.push(detalle);
-    this.actualizarGastoComun();
-    this.toggleAgregarGasto();
-    this.formItemGasto.reset();
   }
   
   private actualizarGastoComun() {
@@ -89,6 +96,7 @@ export class HomeGastosComponent implements OnInit {
 
   public toggleAgregarGasto() {
     this.addGastoMode = !this.addGastoMode;
+    this.formConErrores=false;
   }
 
   public agregarItemCobro(){
