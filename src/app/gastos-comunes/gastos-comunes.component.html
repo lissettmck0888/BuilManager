@@ -48,7 +48,7 @@
                         <tbody>
                             <tr *ngFor="let detalle of mf.data; let i = index">
                                 <td>{{detalle.itemGastoComun.nombre}}</td>
-                                <td>detalle.monto</td>
+                                <td>{{detalle.monto}}</td>
                                 <td><button class="Botones"  (click)="eliminarItemGasto(detalle.idDetalleGastoComun)" title="Eliminar"><i class="fa fa-times"
                                     aria-hidden="true"></i></button>
                                 </td>
