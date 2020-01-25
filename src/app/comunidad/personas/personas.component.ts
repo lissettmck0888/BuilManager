@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonaService } from 'src/app/service/persona.service';
 import { Persona } from 'src/app/model/persona.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personas',
@@ -24,7 +25,8 @@ export class PersonasComponent implements OnInit {
   ];
 
   constructor(
-    private personaService: PersonaService
+    private personaService: PersonaService,
+    private router: Router
   ) { }
 
   ngOnInit() {

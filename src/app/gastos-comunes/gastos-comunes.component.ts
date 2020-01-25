@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { GastoComunService } from '../service/gasto-comun.service';
 import { ItemGastoComun } from '../model/item-gasto-comun.model';
 import { GastoComun } from '../model/gasto-comun.model';
@@ -8,7 +8,8 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-gastos-comunes',
   templateUrl: './gastos-comunes.component.html',
-  styleUrls: ['./gastos-comunes.component.css']
+  styleUrls: ['./gastos-comunes.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GastosComunesComponent implements OnInit {
 
@@ -24,7 +25,8 @@ export class GastosComunesComponent implements OnInit {
 
   constructor(
     private gastoComunService: GastoComunService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -41,6 +43,7 @@ export class GastosComunesComponent implements OnInit {
 
       this.gastoComunService.getItems().subscribe((items: ItemGastoComun[]) => {
         this.items = items;
+        this.cdr.detectChanges();
       });
     });
   }

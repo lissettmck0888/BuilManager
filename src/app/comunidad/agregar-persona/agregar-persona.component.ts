@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PersonaService } from 'src/app/service/persona.service';
 import { Persona } from 'src/app/model/persona.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-persona',
@@ -14,7 +15,8 @@ export class AgregarPersonaComponent implements OnInit {
 
   constructor(
     private personaService: PersonaService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -47,6 +49,7 @@ export class AgregarPersonaComponent implements OnInit {
 
     this.personaService.agregarPersona(persona).subscribe(resp => {
       console.log(resp);
+      this.router.navigate(['/main/comunidad/personas']);
     });
   }
 
