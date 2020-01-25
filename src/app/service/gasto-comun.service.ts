@@ -22,7 +22,7 @@ export class GastoComunService {
     }
 
     public getItems(): Observable<ItemGastoComun[]> {
-        return <Observable<ItemGastoComun[]>>this.httpClient.get(Constants.baseUrl+'/gasto-comun/item/');
+        return <Observable<ItemGastoComun[]>>this.httpClient.get(Constants.baseUrl+'/gasto-comun/item/extraordinario');
     }
     
     public actualizarGastoComun(gastoComun: GastoComun): Observable<any> {
