@@ -1,0 +1,51 @@
+
+<article>
+    <div class="contenedor">
+      <div class="centrar">
+        <h3>Usuarios</h3>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Nombre Usuario</th>
+            <th>Perfil</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuarios; let i = index">
+            <td>{{usuario.nombreUsuario}}</td>
+            <td>
+              <div class="btn">
+                <ng-container *ngIf="!editarRol[i]">
+                  {{usuario.rol.nombre}}
+  
+                </ng-container>
+                <ng-container *ngIf="editarRol[i]">
+                  <select [(ngModel)]="nuevoRol[i]">
+                    <option id="">Seleccione</option>
+                    <option *ngFor="let rol of roles" [value]="rol.idRol">
+                      {{rol.nombre}}
+                    </option>
+                  </select>
+                  <a href="#" (click)="guardarUsuario(i, $event)"> Guardar</a>
+  
+                  <a href="#" (click)="cambiarRolModo(i, false, $event)"> Cancelar</a>
+                </ng-container>
+              </div>
+            </td>
+            <td>
+              <div *ngIf="!editarRol[i]">
+  
+                <button class="Botones" (click)="cambiarRolModo(i, true, $event)" title="Editar"> <i class="fa fa-pencil"
+                    aria-hidden="true"></i></button>
+                <button class="Botones" (click)="eliminarUsuario(i, $event)" title="Eliminar"> <i class="fa fa-times"
+                    aria-hidden="true"></i></button>
+  
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </article>

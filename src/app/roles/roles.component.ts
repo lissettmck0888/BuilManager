@@ -10,28 +10,8 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./roles.component.css']
 })
 export class RolesComponent implements OnInit {
-
-  public roles: any[];
-  public lista: any[] = [];
-  public rol: any[];
-
-  constructor(
-    private rolService:RolService,
-    private router: Router
-  ) { }
-
-  ngOnInit() {
-    this.rolService.getRoles().subscribe(data =>{
-      this.roles = data;
-    });
+  ngOnInit(): void {
   }
-
-  public editarRol(rol : any, event){
-    event.preventDefault();
-    this.rolService.rolSeleccionado = rol;
-    this.router.navigate(['/main/roles/editar']);
-  }
-
 
 
 }

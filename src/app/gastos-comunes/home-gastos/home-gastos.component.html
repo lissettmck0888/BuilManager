@@ -1,0 +1,82 @@
+<article>
+    <div class="contenedorAsignacion">
+    <div class="row">
+        <div class="col-12">
+            <div style="padding: 20px 0; border: 1px solid black;">
+                resumen pagos periodo anterior...
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            Gasto Comun Periodo <strong>{{gastoComun.periodo}}</strong>
+        </div>
+        <div class="col-12">
+            <div>
+                <strong>Gastos Extraordinarios</strong>
+            </div>
+            <button class="Botones" (click)="toggleAgregarGasto()">Agregar Gasto</button>
+            <form [formGroup]="formItemGasto">
+                <table style="width: 100%;" class="table-sm table-striped" [mfData]="listaDetalle" #mf="mfDataTable" [mfRowsOnPage]="10">
+                    <thead>
+                        <tr>
+                            <th style="width: 60%">
+                                <mfDefaultSorter by="item">Item</mfDefaultSorter>
+                            </th>
+                            <th style="width: 20%">
+                                <mfDefaultSorter by="monto">Monto</mfDefaultSorter>
+                            </th>
+                            <th style="width: 20%">
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let detalle of mf.data; let i = index">
+                            <td>{{detalle.itemGastoComun.nombre}}</td>
+                            <td>{{detalle.monto}}</td>
+                            <td><button class="Botones"  (click)="eliminarItemGasto(detalle.idDetalleGastoComun)" title="Eliminar"><i class="fa fa-times"
+                                aria-hidden="true"></i></button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="addGastoMode">
+                            <td>
+                                <ng-autocomplete [data]="items" [searchKeyword]="keyword"
+                                    (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)'
+                                    (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+                                    [debounceTime]="500">
+                                </ng-autocomplete>
+
+                                <ng-template #itemTemplate let-item>
+                                    <a [innerHTML]="item.nombre"></a>
+                                </ng-template>
+
+                            </td>
+                            <td><input type="number" placeholder="Monto" formControlName="monto"></td>
+                            <td>
+                                <button class="Botones" type="button" (click)="agregarItemGasto()" title="Agregar"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                <button class="Botones" type="button" (click)="toggleAgregarGasto()" title="Cancelar"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a href="#" routerLink="/main/gastos-comunes/consolidar">Consolidar Gastos Periodo</a>
+        </div>
+    </div>
+    </div>
+</article>

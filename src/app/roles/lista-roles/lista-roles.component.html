@@ -1,0 +1,22 @@
+<div class="contenedor">
+    <div class="centrar">
+      <h3>Perfiles</h3>
+      <table class="table table-striped">
+        <tr>
+          <th>Nombre Perfil</th>
+          <th></th>
+        </tr>
+        <tbody>
+          <tr *ngFor="let rol of roles">
+            <td>{{rol.nombre}}</td>
+            <td>
+              <div>
+                <button class="Botones" (click)="editarRol(rol, $event)" title="Editar"> <i class="fa fa-pencil"
+                    aria-hidden="true"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
