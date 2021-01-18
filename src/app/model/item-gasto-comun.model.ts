@@ -1,8 +1,8 @@
 export class ItemGastoComun {
 
-    public idItemGastoComun: number;
-    public nombre: string;
-    public descripcion: string;
-    public tipo: string;
+    public id: number;
+    public name: string;
+    public description: string;
+    public type: string;
 
 }

@@ -15,7 +15,7 @@
                             [mfRowsOnPage]="10">
                             <thead>
                                 <tr>
-                                    <th style="width: 15%">
+                                    <th style="width: 30%">
                                         <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
                                     </th>
                                     <th style="width: 15%">
@@ -35,17 +35,17 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let asignacion of mf.data">
-                                    <td>{{asignacion.persona.nombres}}</td>
-                                    <td><fa name="home"></fa>{{showUnidadCopropiedad(asignacion.asignacionUnidads).unidad.numero}}</td>
+                                    <td>{{asignacion.guestFullName}}</td>
+                                    <td><fa name="home"></fa>{{showUnidadCopropiedad(asignacion.assignmentPropertyList).propertyDto.number}}</td>
                                     <td>
-                                        <span *ngFor="let au of showUnidadesAdicionales(asignacion.asignacionUnidads)">
-                                            <span *ngIf="au.unidad.tipoUnidad.idTipoUnidad == 2"><fa name="parking"></fa>{{au.unidad.numero}}</span>
-                                            <span *ngIf="au.unidad.tipoUnidad.idTipoUnidad == 3"><fa name="boxes"></fa>{{au.unidad.numero}}</span>
+                                        <span *ngFor="let au of showUnidadesAdicionales(asignacion.assignmentPropertyList)">
+                                            <span *ngIf="au.propertyDto.type == 'Estacionamiento'"><fa name="parking"></fa>{{au.propertyDto.number}}</span>
+                                            <span *ngIf="au.propertyDto.type == 'Bodega'"><fa name="boxes"></fa>{{au.propertyDto.number}}</span>
                                              
                                         </span>
                                     </td>
-                                    <td>{{asignacion.tipoAsignacion}}</td>
-                                    <td>{{asignacion.estado}}</td>
+                                    <td>{{asignacion.assignmentType}}</td>
+                                    <td>{{asignacion.state}}</td>
                                 </tr>
                             </tbody>
                             <tfoot>

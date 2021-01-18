@@ -37,12 +37,12 @@ export class AgregarPersonaComponent implements OnInit {
     console.log(this.formPersona.value);
 
     let persona: Persona = new Persona();
-    persona.run = this.formPersona.controls.rut.value;
-    persona.nombres = this.formPersona.controls.nombres.value;
-    persona.apellidoPaterno = this.formPersona.controls.apPaterno.value;
-    persona.apellidoMaterno = this.formPersona.controls.apMaterno.value;
-    persona.correo = this.formPersona.controls.email.value;
-    persona.telefono = this.formPersona.controls.telefono.value;
+    persona.rut = this.formPersona.controls.rut.value;
+    persona.name = this.formPersona.controls.nombres.value;
+    persona.lastNameP = this.formPersona.controls.apPaterno.value;
+    persona.lastNameM = this.formPersona.controls.apMaterno.value;
+    persona.email = this.formPersona.controls.email.value;
+    persona.phone = this.formPersona.controls.telefono.value;
 
     console.log('persona');
     console.log(persona);

@@ -37,8 +37,8 @@ export class GastoComunService {
         return <Observable<string>>this.httpClient.get(Constants.baseUrl+'/gasto-comun/periodo-actual/');
     }
 
-    public cerrarGastoComun(gastoComun: GastoComun): Observable<any> {
-        return this.httpClient.post(Constants.baseUrl+'/gasto-comun/cerrar', gastoComun);
+    public cerrarGastoComun(/* gastoComun: GastoComun */): Observable<any> {
+        return this.httpClient.post(Constants.baseUrl+'/gasto-comun/cerrar', {});
     }
     public prorratearGastoComun(): Observable<DetalleDeudaUnidad[]> {
         return <Observable<DetalleDeudaUnidad[]>>this.httpClient.post(Constants.baseUrl+'/gasto-comun/prorratear', null);

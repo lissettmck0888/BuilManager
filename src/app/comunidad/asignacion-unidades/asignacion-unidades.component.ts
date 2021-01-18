@@ -60,20 +60,20 @@ export class AsignacionUnidadesComponent implements OnInit {
     });
 
     this.formAsignacion.controls.tipoAsignacion.valueChanges.subscribe(val => {
-      this.nuevaAsignacion.tipoAsignacion = val;
+      this.nuevaAsignacion.assignmentType = val;
       this.loadUnidadesCopropiedad();
     });
-    this.formAsignacion.controls.estadoAsignacion.valueChanges.subscribe(val => this.nuevaAsignacion.estado = val);
+    this.formAsignacion.controls.estadoAsignacion.valueChanges.subscribe(val => this.nuevaAsignacion.state = val);
 
   }
 
   private loadUnidadesCopropiedad() {
     this.unidadesCopropiedadDisponibles = [];
-    if (this.nuevaAsignacion.tipoAsignacion === 'propietario') {
+    if (this.nuevaAsignacion.assignmentType === 'propietario') {
       this.unidadService.getUnidadesSinAsignacionUnidadCopropiedad().subscribe(data => {
         this.unidadesCopropiedadDisponibles = data;
       });
-    } else if (this.nuevaAsignacion.tipoAsignacion === 'arriendo') {
+    } else if (this.nuevaAsignacion.assignmentType === 'arriendo') {
 
       this.unidadService.getUnidadesParaArriendo().subscribe(data => {
         this.unidadesCopropiedadDisponibles = data;
@@ -101,9 +101,9 @@ export class AsignacionUnidadesComponent implements OnInit {
       console.log(unidadSeleccionada);
   
       let asignacionUnidad: AsignacionUnidad = new AsignacionUnidad();
-      asignacionUnidad.unidad = unidadSeleccionada;
-      asignacionUnidad.unidadCopropiedad = unidadSeleccionada.tipoUnidad.idTipoUnidad === 1;
-      this.nuevaAsignacion.asignacionUnidades.push(asignacionUnidad);
+      asignacionUnidad.propertyDto = unidadSeleccionada;
+      asignacionUnidad.mainProperty = unidadSeleccionada.type === 'Departamento';
+      this.nuevaAsignacion.assignmentPropertyList.push(asignacionUnidad);
   
       this.loadPropiedades();
       this.unidadCopropietarioYaSeleccionada = true;
@@ -120,21 +120,21 @@ export class AsignacionUnidadesComponent implements OnInit {
 
     unidadesSeleccionadas.forEach(u=>{
       let asignacionUnidad: AsignacionUnidad = new AsignacionUnidad();
-      asignacionUnidad.unidad = u;
-      asignacionUnidad.unidadCopropiedad = u.tipoUnidad.idTipoUnidad === 1;
-      this.nuevaAsignacion.asignacionUnidades.push(asignacionUnidad);
+      asignacionUnidad.propertyDto = u;
+      asignacionUnidad.mainProperty = u.type === 'Departamento';
+      this.nuevaAsignacion.assignmentPropertyList.push(asignacionUnidad);
     });
     
   }
   
   quitarUnidad(asignacionUnidad: AsignacionUnidad) {
-    const idx = this.nuevaAsignacion.asignacionUnidades.indexOf(asignacionUnidad);
+    const idx = this.nuevaAsignacion.assignmentPropertyList.indexOf(asignacionUnidad);
     console.log(idx);
-    this.nuevaAsignacion.asignacionUnidades = this.nuevaAsignacion.asignacionUnidades.filter(a=>!(a.unidad.idUnidad === asignacionUnidad.unidad.idUnidad));
+    this.nuevaAsignacion.assignmentPropertyList = this.nuevaAsignacion.assignmentPropertyList.filter(a=>!(a.propertyDto.id === asignacionUnidad.propertyDto.id));
     
-    if(asignacionUnidad.unidadCopropiedad){
+    if(asignacionUnidad.mainProperty){
       this.unidadCopropietarioYaSeleccionada = false;
-      this.nuevaAsignacion.asignacionUnidades = [];
+      this.nuevaAsignacion.assignmentPropertyList = [];
       this.formAsignacion.reset();
       this.formConErrores = false;
       //this.auto.close();
@@ -150,9 +150,9 @@ export class AsignacionUnidadesComponent implements OnInit {
     let run: string = item.name.substring(0, item.name.indexOf(' - '));
     console.log('run');
     console.log(run);
-    const persona: Persona = this.personas.find(persona => persona.run === run);
-    this.nuevaAsignacion.persona = persona;
-    this.formAsignacion.controls.idPersona.setValue(persona.idPersona);
+    const persona: Persona = this.personas.find(persona => persona.rut === run);
+    this.nuevaAsignacion.guestId = persona.id;
+    this.formAsignacion.controls.idPersona.setValue(persona.id);
     console.log('this.nuevaAsignacion');
     console.log(this.nuevaAsignacion);
   }
@@ -165,7 +165,7 @@ export class AsignacionUnidadesComponent implements OnInit {
       this.personas = data;
       let aux: any[] = [];
       data.forEach(persona => {
-        aux.push({ "name": persona.run + ' - ' + persona.nombres + ' ' + persona.apellidoPaterno + ' ' + persona.apellidoMaterno });
+        aux.push({ "name": persona.rut + ' - ' + persona.name + ' ' + persona.lastNameP + ' ' + persona.lastNameM });
       });
       this.data = aux;
     });

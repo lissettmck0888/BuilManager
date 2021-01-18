@@ -1,11 +1,12 @@
 import { DetalleGastoComun } from './detalle-gasto-comun.model';
+import { ItemGastoComun } from './item-gasto-comun.model';
 
 export class GastoComun {
 
-    public idGastoComun: number;
-    public estado: string;
-    public montoTotal: number;
-    public periodo: string;
-    public listaDetalleGastoComun: DetalleGastoComun[];
+    public id: number;
+    public state: string;
+    public totalAmount: number;
+    public period: string;
+    public expenseItemList: DetalleGastoComun[];
 
 }

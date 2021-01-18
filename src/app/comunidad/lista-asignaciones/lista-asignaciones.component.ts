@@ -24,11 +24,11 @@ export class ListaAsignacionesComponent implements OnInit {
   }
 
   showUnidadCopropiedad(asignacionUnidadList:AsignacionUnidad[]): AsignacionUnidad {
-    return asignacionUnidadList.find(au=>au.unidadCopropiedad);
+    return asignacionUnidadList.find(au=>au.mainProperty);
   }
 
   showUnidadesAdicionales(asignacionUnidadList:AsignacionUnidad[]): AsignacionUnidad[] {
-    return asignacionUnidadList.filter(au=>!au.unidadCopropiedad);
+    return asignacionUnidadList.filter(au=>!au.mainProperty);
   }
 
 }

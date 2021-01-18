@@ -1,6 +1,6 @@
 import { Unidad } from './unidad.model';
 
 export class AsignacionUnidad {
-    public unidad: Unidad;
-    public unidadCopropiedad: boolean;
+    public propertyDto: Unidad;
+    public mainProperty: boolean;
 }

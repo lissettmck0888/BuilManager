@@ -34,33 +34,26 @@ export class ConsolidarGastosComponent implements OnInit {
       this.gastosOrdinariosList = data.resolverData.plantillaGastos;
       this.cargarComoGastoComun();
       this.gastoComun = data.resolverData.gastoComun;
-      this.gastosExtraordinariosList = this.gastoComun.listaDetalleGastoComun;
+      this.gastosExtraordinariosList = this.gastoComun.expenseItemList;
       this.calcularTotalParcial();
     });
 
   }
 
   cerrarGastoComunPeriodo() {
-    /* TODO invocar servicio cerrar gasto comun */
-    
-    this.gastosOrdinariosList.forEach(gasto=>{
-      let detalleGasto: DetalleGastoComun = new DetalleGastoComun();
-      detalleGasto.gastoComun = this.gastoComun.idGastoComun;
-      detalleGasto.itemGastoComun = gasto.itemGastoComun;
-      detalleGasto.monto = gasto.monto;
-      this.gastoComun.listaDetalleGastoComun.push(detalleGasto);
-    });
-    this.gastoComunService.cerrarGastoComun(this.gastoComun).subscribe(resp=>{
+
+    this.gastoComunService.cerrarGastoComun(/* this.gastoComun */).subscribe(resp=>{
       this.router.navigate(['/main/gastos-comunes/resumen']);
     });
+    
   }
 
   private calcularTotalParcial(){
-    this.sumaParcial = this.gastosOrdinariosList.map(ord=>ord.monto).reduce((a,b)=> a+b);
+    this.sumaParcial = this.gastosOrdinariosList.map(ord=>ord.amount).reduce((a,b)=> a+b);
     console.log('this.sumaParcial');
     console.log(this.sumaParcial);
     if(this.gastosExtraordinariosList && this.gastosExtraordinariosList.length > 0){
-      this.sumaParcial += this.gastosExtraordinariosList.map(ext=>ext.monto).reduce((a,b)=> a+b);
+      this.sumaParcial += this.gastosExtraordinariosList.map(ext=>ext.amount).reduce((a,b)=> a+b);
       console.log('this.sumaParcial');
       console.log(this.sumaParcial);
     }

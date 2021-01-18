@@ -13,12 +13,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeGastosComponent implements OnInit {
 
-  keyword = 'nombre';
+  keyword = 'name';
 
   public items: ItemGastoComun[];
   public gastoComun: GastoComun;
   public listaDetalle: DetalleGastoComun[];
-  private selectedItem: ItemGastoComun;
+  private selectedItem: DetalleGastoComun;
   public addGastoMode: boolean;
 
   formItemGasto: FormGroup;
@@ -44,8 +44,10 @@ export class HomeGastosComponent implements OnInit {
       console.log('data resolver');
       console.log(data);
       this.gastoComun = data.resolverData.gastoComun;
-      this.listaDetalle = this.gastoComun.listaDetalleGastoComun;
+      this.listaDetalle = this.gastoComun.expenseItemList;
       this.items = data.resolverData.items;
+      console.log('this.items');
+      console.log(this.items);
       //this.cdr.detectChanges();
 
     });
@@ -57,24 +59,24 @@ export class HomeGastosComponent implements OnInit {
     }); */
   }
 
-  public eliminarItemGasto(idDetalle: number) {
-    this.gastoComun.listaDetalleGastoComun = this.gastoComun.listaDetalleGastoComun.filter(detalle=>detalle.idDetalleGastoComun!==idDetalle);
+  public eliminarItemGasto(id: number) {
+    this.gastoComun.expenseItemList = this.gastoComun.expenseItemList.filter(detalle=>detalle.id!==id);
     this.actualizarGastoComun();
   }
   
   public agregarItemGasto() {
     let detalle: DetalleGastoComun = new DetalleGastoComun();
-    detalle.gastoComun = this.gastoComun.idGastoComun;
+    //detalle.gastoComun = this.gastoComun.id;
     if(this.formItemGasto.valid) {
       
       if(!this.selectedItem) {
-        this.selectedItem = new ItemGastoComun();
-        this.selectedItem.nombre = this.formItemGasto.controls.item.value;
-        this.selectedItem.tipo = 'extraordinario';
+        this.selectedItem = new DetalleGastoComun();
+        this.selectedItem.name = this.formItemGasto.controls.item.value;
+        this.selectedItem.type = 'extraordinario';
       }
-      detalle.itemGastoComun = this.selectedItem;
-      detalle.monto = this.formItemGasto.controls.monto.value;
-      this.gastoComun.listaDetalleGastoComun.push(detalle);
+      detalle = this.selectedItem;
+      detalle.amount = this.formItemGasto.controls.monto.value;
+      this.gastoComun.expenseItemList.push(detalle);
       this.actualizarGastoComun();
       this.toggleAgregarGasto();
       this.formItemGasto.reset();
@@ -88,7 +90,7 @@ export class HomeGastosComponent implements OnInit {
     this.gastoComunService.actualizarGastoComun(this.gastoComun).subscribe(resp=>{
       console.log(resp);
       this.gastoComun = resp;
-      this.listaDetalle = this.gastoComun.listaDetalleGastoComun;
+      this.listaDetalle = this.gastoComun.expenseItemList;
       this.selectedItem = null;
       this.gastoComunService.getItems().subscribe(items=>this.items = items);
     });
@@ -109,8 +111,12 @@ export class HomeGastosComponent implements OnInit {
     // do something with selected item
     console.log('item');
     console.log(item);
-    this.selectedItem = <ItemGastoComun>item;
-    this.formItemGasto.controls.item.setValue(this.selectedItem.nombre);
+    this.selectedItem = new DetalleGastoComun();
+    this.selectedItem.name = item.name;
+    this.selectedItem.type = item.type;
+    this.selectedItem.description = item.description;
+    
+    this.formItemGasto.controls.item.setValue(this.selectedItem.name);
   }
   
   onChangeSearch(val: string) {

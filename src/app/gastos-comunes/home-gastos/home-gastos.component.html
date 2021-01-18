@@ -38,9 +38,9 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let detalle of mf.data; let i = index">
-                                <td>{{detalle.itemGastoComun.nombre}}</td>
-                                <td>{{detalle.monto | currency:'USD' : 'symbol' : '1.0-0'}}</td>
-                                <td><button class="Botones" (click)="eliminarItemGasto(detalle.idDetalleGastoComun)"
+                                <td>{{detalle.name}}</td>
+                                <td>{{detalle.amount | currency:'USD' : 'symbol' : '1.0-0'}}</td>
+                                <td><button class="Botones" (click)="eliminarItemGasto(detalle.id)"
                                         title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></button>
                                 </td>
                             </tr>
@@ -57,7 +57,7 @@
                                             </ng-autocomplete>
         
                                             <ng-template #itemTemplate let-item>
-                                                <a [innerHTML]="item.nombre"></a>
+                                                <a [innerHTML]="item.name"></a>
                                             </ng-template>
                                         </div>
                                     </div>
