@@ -44,12 +44,12 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let detalle of mf.data; let i = index">
-                                <td>{{detalle.unidad.numero}}</td>
+                                <td>{{detalle.unidad}}</td>
                                 <td>{{detalle.responsable}}</td>
-                                <td>{{detalle.factorProrrateo | number:'1.3-3'}}</td>
-                                <td>{{detalle.monto | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
-                                <td>{{detalle.montoAnterior | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
-                                <td>{{detalle.montoTotal | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+                                <td>{{detalle.apportionFactor | number:'1.3-3'}}</td>
+                                <td>{{detalle.periodDebt | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+                                <td>{{detalle.previousPeriodDebt | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+                                <td>{{detalle.balance | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
                             </tr>
                             
                         </tbody>
