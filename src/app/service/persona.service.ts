@@ -8,7 +8,11 @@ import { Constants } from '../shared/constants';
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class PersonaService {
+  persona : Persona;
 
   public rolSeleccionado: any;
 
@@ -24,4 +28,7 @@ export class PersonaService {
     return this.httpservice.post(Constants.baseUrl+'/persona/', persona);
   }
   
+  public eliminarPersona(persona: Persona){
+    return this.httpservice.delete<Persona>(Constants.baseUrl+'/persona/' + persona.idPersona);
+  }
 }

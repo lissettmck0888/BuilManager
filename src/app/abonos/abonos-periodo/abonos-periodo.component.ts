@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DetalleDeudaUnidad } from 'src/app/model/detalle-deuda-unidad.model';
+import { AbonosService } from 'src/app/service/abonos.service';
 
 @Component({
   selector: 'app-abonos-periodo',
@@ -11,9 +12,7 @@ export class AbonosPeriodoComponent implements OnInit {
 
   public detalleDeudaUnidadList: DetalleDeudaUnidad[];
 
-  constructor(
-    private activatedRoute: ActivatedRoute
-  ) { }
+  constructor(private activatedRoute: ActivatedRoute,private router: Router, private abonoService: AbonosService) { }
 
   ngOnInit() {
 
@@ -21,6 +20,12 @@ export class AbonosPeriodoComponent implements OnInit {
       console.log(data.resolverData);
       this.detalleDeudaUnidadList = data.resolverData;
     });
+
   }
+    abonar(detalleDeuda : DetalleDeudaUnidad){
+      this.abonoService.detalleDeuda = detalleDeuda;
+      this.router.navigate(['main/abonos/registrar']);
+
+    }
 
 }

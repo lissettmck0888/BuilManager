@@ -11,8 +11,8 @@
             <div class="row">
                 <div class="col-12">
 
-                    <table class="table table-striped" [mfData]="personasList" #mf="mfDataTable" [mfRowsOnPage]="10">
-                        <thead>
+                    <table class="table" [mfData]="personasList" #mf="mfDataTable" [mfRowsOnPage]="10">
+                        <thead class="table-dark">
                             <tr>
                                 <th style="width: 20%">
                                     <mfDefaultSorter by="name">Rut</mfDefaultSorter>
@@ -26,6 +26,8 @@
                                 <th style="width: 10%">
                                     <mfDefaultSorter by="age">Celular</mfDefaultSorter>
                                 </th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,6 +36,12 @@
                                 <td>{{persona.nombres}} {{persona.apellidoPaterno}} {{persona.apellidoMaterno}}</td>
                                 <td>{{persona.correo}}</td>
                                 <td class="text-right">{{persona.telefono}}</td>
+                                <td>
+                                    <button (click)="editar(persona)" class="btn btn-outline-success">Editar</button>
+                                </td>
+                                <td>
+                                    <button (click)="eliminar(persona)" class="btn btn-outline-danger">Borrar</button>
+                                </td>
                             </tr>
                         </tbody>
                         <tfoot>

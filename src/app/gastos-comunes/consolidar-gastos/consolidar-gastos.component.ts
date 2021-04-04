@@ -43,13 +43,14 @@ export class ConsolidarGastosComponent implements OnInit {
   cerrarGastoComunPeriodo() {
     /* TODO invocar servicio cerrar gasto comun */
     
-    this.gastosOrdinariosList.forEach(gasto=>{
+    /*this.gastosOrdinariosList.forEach(gasto=>{
       let detalleGasto: DetalleGastoComun = new DetalleGastoComun();
       detalleGasto.gastoComun = this.gastoComun.idGastoComun;
       detalleGasto.itemGastoComun = gasto.itemGastoComun;
       detalleGasto.monto = gasto.monto;
       this.gastoComun.listaDetalleGastoComun.push(detalleGasto);
-    });
+    });*/
+    
     this.gastoComunService.cerrarGastoComun(this.gastoComun).subscribe(resp=>{
       this.router.navigate(['/main/gastos-comunes/resumen']);
     });

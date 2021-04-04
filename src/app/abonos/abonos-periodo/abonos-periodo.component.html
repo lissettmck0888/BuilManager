@@ -19,8 +19,8 @@
                     <strong>Detalle Individual</strong>
                 </div>
                 <form>
-                    <table style="width: 100%;" class="table-sm table-striped" [mfData]="detalleDeudaUnidadList" #mf="mfDataTable" [mfRowsOnPage]="10">
-                        <thead>
+                    <table style="width: 100%;" class="table" [mfData]="detalleDeudaUnidadList" #mf="mfDataTable" [mfRowsOnPage]="10">
+                        <thead class="table-dark">
                             <tr>
                                 <th style="width: 10%">
                                     <mfDefaultSorter by="item">Unidad</mfDefaultSorter>
@@ -40,6 +40,8 @@
                                 <th style="width: 15%">
                                     <mfDefaultSorter by="monto">Total Periodo</mfDefaultSorter>
                                 </th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,6 +52,8 @@
                                 <td>{{detalle.monto | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
                                 <td>{{detalle.montoAnterior | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
                                 <td>{{detalle.montoTotal | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+                                <td><button class="btn btn-outline-success">Detalle</button></td>
+                                <td><button (click)="abonar(detalle)" class="btn btn-outline-success">Abonar</button></td>
                             </tr>
                             
                         </tbody>

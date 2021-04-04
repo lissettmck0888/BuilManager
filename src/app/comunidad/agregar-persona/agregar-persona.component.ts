@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AgregarPersonaComponent implements OnInit {
 
+  
   formPersona: FormGroup;
 
   constructor(
@@ -22,13 +23,21 @@ export class AgregarPersonaComponent implements OnInit {
   ngOnInit() {
 
     this.formPersona = this.formBuilder.group({
-      rut: [],
+      idPersona:[],
+      run: [],
       nombres: [],
-      apPaterno: [],
-      apMaterno: [],
+      apellidoPaterno: [],
+      apellidoMaterno: [],
       email: [],
-      telefono: []
+      correo: [],
+      telefono : []
     });
+
+    if(this.personaService.persona){
+      
+        this.formPersona.patchValue(this.personaService.persona);
+  
+    }
   }
 
   agregarPersona() {
@@ -36,12 +45,13 @@ export class AgregarPersonaComponent implements OnInit {
     console.log('this.formPersona.value');
     console.log(this.formPersona.value);
 
-    let persona: Persona = new Persona();
-    persona.run = this.formPersona.controls.rut.value;
+    let persona:Persona= new Persona();
+    persona.idPersona = this.formPersona.controls.idPersona.value;
+    persona.run = this.formPersona.controls.run.value;
     persona.nombres = this.formPersona.controls.nombres.value;
-    persona.apellidoPaterno = this.formPersona.controls.apPaterno.value;
-    persona.apellidoMaterno = this.formPersona.controls.apMaterno.value;
-    persona.correo = this.formPersona.controls.email.value;
+    persona.apellidoPaterno = this.formPersona.controls.apellidoPaterno.value;
+    persona.apellidoMaterno = this.formPersona.controls.apellidoMaterno.value;
+    persona.correo = this.formPersona.controls.correo.value;
     persona.telefono = this.formPersona.controls.telefono.value;
 
     console.log('persona');

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './agregar-rol.component.html',
   styleUrls: ['./agregar-rol.component.css']
 })
+
 export class AgregarRolComponent implements OnInit {
 
   public rolSeleccionado: any;

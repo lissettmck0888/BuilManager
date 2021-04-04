@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PersonaService } from 'src/app/service/persona.service';
 import { Persona } from 'src/app/model/persona.model';
 import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-personas',
@@ -9,20 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./personas.component.css']
 })
 export class PersonasComponent implements OnInit {
-
+  
   personasList: Persona[];
+  persona : Persona;
 
-  data: any[] = [
-    {name: 'titi', age: 20, email: 'titi@gmail.com'},
-    {name: 'mora', age: 58, email: 'morita@hotmail.com'},
-    {name: 'zane', age: 38, email: 'zane84@yahoo.com'},
-    {name: 'jack', age: 20, email: 'titi@gmail.com'},
-    {name: 'tom', age: 58, email: 'morita@hotmail.com'},
-    {name: 'jenny', age: 38, email: 'zane84@yahoo.com'},
-    {name: 'lars', age: 20, email: 'titi@gmail.com'},
-    {name: 'dave', age: 58, email: 'morita@hotmail.com'},
-    {name: 'jason', age: 38, email: 'zane84@yahoo.com'}
-  ];
+ 
 
   constructor(
     private personaService: PersonaService,
@@ -33,7 +25,22 @@ export class PersonasComponent implements OnInit {
 
     this.personaService.getAll().subscribe(data=>{
       this.personasList = data;
+      
     });
+  }
+
+  editar(persona : Persona){
+    this.personaService.persona = persona;
+    this.router.navigate(['main/comunidad/agregar-persona']);
+  }
+
+  eliminar(persona : Persona){
+    this.personaService.eliminarPersona(persona).subscribe(data=>{
+      console.log(data);
+      this.personaService.getAll().subscribe(data=>{
+        this.personasList = data;
+      })
+    })
   }
 
 }

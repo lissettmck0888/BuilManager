@@ -1,1 +1,52 @@
-<p>registrar-abono works!</p>
+<article>
+    <div class="contenedor_">
+        <a routerLink="/main/abonos">Volver</a>
+        <div class="centrar_">
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-10">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <div>
+                            <span>Unidad: {{detalleDeuda.unidad.numero}}</span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-10">
+            <div>
+                <strong>Abonar - Pagar</strong>
+            </div>
+            <form [formGroup]="registrarAbono">
+                <div class="card border-info mb-3" style="width: 100%;">
+                    <div class="card-body">
+                        <span>Deuda: {{detalleDeuda.montoTotal | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="total" formControlName="tipoPago"
+                                name="tipoPago" id="flexRadioDefault1">
+                            <label class="form-check-label">
+                                Total
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="otro" formControlName="tipoPago"
+                                name="tipoPago" id="flexRadioDefault2" checked>
+                            <label class="form-check-label">
+                                Otro
+                            </label>
+                        </div>
+                        <input type="number" formControlName="monto" placeholder="Ingrese monto"
+                            *ngIf="radiobutton == Total">
+                        <button (click)="guardarPago()" class="btn btn-outline-success"
+                            style="margin: 10px;">Pagar</button>
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+</article>

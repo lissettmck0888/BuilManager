@@ -9,11 +9,14 @@
   
   /* Style the header */
   header {
-    background-color: #81D2E5;
+    background-color: #454746;
     padding: 5px;
     text-align: center;
     font-size: 35px;
-    color: white;
+    color: rgb(27, 30, 31);
+    background-image:url("/assets/img/bannerEdificio.jpg");
+    height: 120px;
+    
   }
   
   /* Create two columns/boxes that floats next to each other */
@@ -21,7 +24,7 @@
     float: left;
     width: 15%;
     height: 800px; /* only for demonstration, should be removed */
-    background:rgb(215, 246, 252);
+    background:rgb(194, 197, 196);
   }
   
   /* Style the list inside the menu */
@@ -93,7 +96,7 @@
 }
 
 .active {
-  background-color: #4CAF50;
+  background-color: #5c9ebd;
 }
 .elementos{
   margin:auto;
@@ -115,6 +118,7 @@ p{
   color: black;
 }
 
+
 .Botones{
    margin: 5px;
    background-color:rgb(156, 205, 224);
@@ -123,12 +127,15 @@ p{
 }
 .barraAutenticacion{
   text-align: right;
-  background:#07597E;
+  background:#4097fa;
   color:white;
 }
 .active{
-  background-color:#72CCE4;
+  background-color:#f5f9fa;
   color: red;
+}
+a{
+  color:black;
 }
 .centrar{
   margin: auto;
@@ -152,15 +159,25 @@ p{
   margin: auto;
   width: 120%;
   padding: 10px;
-
   border-radius: 5px 5px 5px 5px;
 }
 
 
 .table-striped>tbody>tr:nth-child(odd)>td, 
 .table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: rgb(215, 246, 252); 
+   background-color: rgb(184, 186, 187); 
+   
  }
+ 
+ table > thead >  tr> th > mfdefaultsorter > a {
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+table >tbody > mfdefaultsorter{
+  background-color: cadetblue;
+}
+
 
  .warning{
    color: red;

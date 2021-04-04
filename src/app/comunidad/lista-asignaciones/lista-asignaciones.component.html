@@ -5,15 +5,15 @@
                 <h5>Copropiedades</h5>
                 <div class="row">
                     <div class="col-12">
-                        <a href="#" routerLink="/main/comunidad/asignacion-unidades">Nueva asignacion</a>
+                        <a href="#" routerLink="/main/comunidad/asignacion-unidades" color="black"> Nueva asignacion</a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
 
-                        <table class="table table-striped" [mfData]="asignacionesList" #mf="mfDataTable"
+                        <table class="table" [mfData]="asignacionesList" #mf="mfDataTable"
                             [mfRowsOnPage]="10">
-                            <thead>
+                            <thead class="table-dark">
                                 <tr>
                                     <th style="width: 15%">
                                         <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
