@@ -7,5 +7,8 @@ export class Unidad{
     public piso: number;
     public numero: string;
     public sector: string;
-    public rating: number;
+    public metrosCuadrados: number;
+    public afectoProrrateo: boolean;
+    public esUnidadCopropiedad: boolean;
+    public factorProrrateo: number;
 }

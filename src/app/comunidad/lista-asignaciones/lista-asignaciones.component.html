@@ -36,11 +36,11 @@
                             <tbody>
                                 <tr *ngFor="let asignacion of mf.data">
                                     <td>{{asignacion.persona.nombres}}</td>
-                                    <td><fa name="home"></fa>{{showUnidadCopropiedad(asignacion.asignacionUnidads).unidad.numero}}</td>
+                                    <td><fa name="home"></fa>{{showUnidadCopropiedad(asignacion.unidades).numero}}</td>
                                     <td>
-                                        <span *ngFor="let au of showUnidadesAdicionales(asignacion.asignacionUnidads)">
-                                            <span *ngIf="au.unidad.tipoUnidad.idTipoUnidad == 2"><fa name="parking"></fa>{{au.unidad.numero}}</span>
-                                            <span *ngIf="au.unidad.tipoUnidad.idTipoUnidad == 3"><fa name="boxes"></fa>{{au.unidad.numero}}</span>
+                                        <span *ngFor="let unidad of showUnidadesAdicionales(asignacion.unidades)">
+                                            <span *ngIf="unidad.tipoUnidad.idTipoUnidad == 2"><fa name="parking"></fa>{{unidad.numero}}</span>
+                                            <span *ngIf="unidad.tipoUnidad.idTipoUnidad == 3"><fa name="boxes"></fa>{{unidad.numero}}</span>
                                              
                                         </span>
                                     </td>

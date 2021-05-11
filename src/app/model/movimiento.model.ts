@@ -4,5 +4,5 @@ export class Movimiento{
     public monto : number;
     public tipo : string;
     public idGastoComun : number;
-    public idUnidad : number;
+    public idAsignacion : number;
 }

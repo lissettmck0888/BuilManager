@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Asignacion } from 'src/app/model/asignacion.model';
 import { AsignacionService } from 'src/app/service/asignacion.service';
 import { AsignacionUnidad } from 'src/app/model/asignacion-unidad.model';
+import { Unidad } from 'src/app/model/unidad.model';
 
 @Component({
   selector: 'app-lista-asignaciones',
@@ -23,12 +24,12 @@ export class ListaAsignacionesComponent implements OnInit {
     });
   }
 
-  showUnidadCopropiedad(asignacionUnidadList:AsignacionUnidad[]): AsignacionUnidad {
-    return asignacionUnidadList.find(au=>au.unidadCopropiedad);
+  showUnidadCopropiedad(unidadList:Unidad[]): Unidad {
+    return unidadList.find(unidad=>unidad.esUnidadCopropiedad);
   }
 
-  showUnidadesAdicionales(asignacionUnidadList:AsignacionUnidad[]): AsignacionUnidad[] {
-    return asignacionUnidadList.filter(au=>!au.unidadCopropiedad);
+  showUnidadesAdicionales(unidadList:Unidad[]): Unidad[] {
+    return unidadList.filter(unidad=>!unidad.esUnidadCopropiedad);
   }
 
 }

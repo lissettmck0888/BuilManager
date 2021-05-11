@@ -9,5 +9,5 @@ export class Asignacion {
     public tipoAsignacion: string;
     public estado: string;
     public fechaAsignacion: string;
-    public asignacionUnidades: AsignacionUnidad[] = [];
+    public unidades: Unidad[] = [];
 }

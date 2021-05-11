@@ -37,7 +37,7 @@ export class RegistrarAbonoComponent implements OnInit {
   guardarPago(){
     let movimiento : Movimiento = new Movimiento();
     movimiento.monto = this.registrarAbono.controls.monto.value;
-    movimiento.idUnidad = this.detalleDeuda.unidad.idUnidad;
+    movimiento.idAsignacion = this.detalleDeuda.idAsignacion;
     movimiento.idGastoComun = this.detalleDeuda.gastoComun.idGastoComun; 
     this.abonoService.guardarAbono(movimiento).subscribe(data => {
       console.log(data);
