@@ -52,7 +52,7 @@
                                 <td>{{detalle.monto | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
                                 <td>{{detalle.montoAnterior | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
                                 <td>{{detalle.montoTotal | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
-                                <td><button class="btn btn-outline-success">Detalle</button></td>
+                                <td><button (click)="detallevvv(detalle)" class="btn btn-outline-success">Detalle</button></td>
                                 <td><button (click)="abonar(detalle)" class="btn btn-outline-success">Abonar</button></td>
                             </tr>
                             

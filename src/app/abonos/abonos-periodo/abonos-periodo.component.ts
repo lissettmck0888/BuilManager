@@ -28,4 +28,9 @@ export class AbonosPeriodoComponent implements OnInit {
 
     }
 
+    detallevvv(detalleDeuda: DetalleDeudaUnidad){
+      this.abonoService.detalleDeuda = detalleDeuda;
+      this.router.navigate(['main/abonos/detalle']);
+    }
+
 }

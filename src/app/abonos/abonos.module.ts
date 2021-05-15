@@ -7,11 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AbonosRoutingModule } from './abonos-routing.module';
 import { DataTableModule } from 'angular-6-datatable';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { AbonosDetalleUnidadComponent } from './abonos-detalle-unidad/abonos-detalle-unidad.component';
 
 
 
 @NgModule({
-  declarations: [AbonosComponent, AbonosPeriodoComponent, RegistrarAbonoComponent],
+  declarations: [AbonosComponent, AbonosPeriodoComponent, RegistrarAbonoComponent, AbonosDetalleUnidadComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -3,8 +3,8 @@
     <div class="contenedor">
       <div class="centrar">
         <h3>Usuarios</h3>
-        <table class="table table-striped">
-          <thead>
+        <table class="table">
+          <thead class="table-dark">
           <tr>
             <th>Nombre Usuario</th>
             <th>Perfil</th>
@@ -15,7 +15,7 @@
           <tr *ngFor="let usuario of usuarios; let i = index">
             <td>{{usuario.nombreUsuario}}</td>
             <td>
-              <div class="btn">
+              <div class="">
                 <ng-container *ngIf="!editarRol[i]">
                   {{usuario.rol.nombre}}
   
@@ -36,9 +36,9 @@
             <td>
               <div *ngIf="!editarRol[i]">
   
-                <button class="Botones" (click)="cambiarRolModo(i, true, $event)" title="Editar"> <i class="fa fa-pencil"
+                <button type="button" class="btn btn-outline-primary" (click)="cambiarRolModo(i, true, $event)" title="Editar"> <i class="fa fa-pencil"
                     aria-hidden="true"></i></button>
-                <button class="Botones" (click)="eliminarUsuario(i, $event)" title="Eliminar"> <i class="fa fa-times"
+                <button type="button" class="btn btn-outline-danger" (click)="eliminarUsuario(i, $event)" title="Eliminar" style="margin-left: 10px;"> <i class="fa fa-times"
                     aria-hidden="true"></i></button>
   
               </div>

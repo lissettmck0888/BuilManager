@@ -162,6 +162,13 @@ a{
   border-radius: 5px 5px 5px 5px;
 }
 
+.contenedorPerfil{
+  margin: auto;
+  width: 40%;
+  padding: 10px;
+  border-radius: 5px 5px 5px 5px;
+}
+
 
 .table-striped>tbody>tr:nth-child(odd)>td, 
 .table-striped>tbody>tr:nth-child(odd)>th {

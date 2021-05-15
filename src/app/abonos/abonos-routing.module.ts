@@ -5,6 +5,8 @@ import { AbonosComponent } from './abonos.component';
 import { AbonosPeriodoComponent } from './abonos-periodo/abonos-periodo.component';
 import { RegistrarAbonoComponent } from './registrar-abono/registrar-abono.component';
 import { AbonosResolverService } from '../service/abonos-resolver.service';
+import { AbonosDetalleUnidadComponent } from './abonos-detalle-unidad/abonos-detalle-unidad.component';
+
 
 const routes = [
     {
@@ -13,6 +15,7 @@ const routes = [
         children: [
             {path:'periodo', component: AbonosPeriodoComponent, resolve: {resolverData: AbonosResolverService} },
             {path:'registrar', component: RegistrarAbonoComponent },
+            {path:'detalle', component: AbonosDetalleUnidadComponent},
             {path:'', redirectTo: 'periodo' }
         ]
     }
